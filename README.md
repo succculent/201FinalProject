@@ -1,9 +1,15 @@
 This is the CSCI 201 Final Project for -  
+
 Jason Yik, jyik@usc.edu
+
 Nick Chen, nickchen@usc.edu
+
 Ada Toydemir, toydemir@usc.edu
+
 Haoda Wang, haodawan@usc.edu
+
 Kai-Chin Hsu, kaichinh@usc.edu
+
 Lauren Shen, laurenys@usc.edu
 
 
