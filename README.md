@@ -13,6 +13,8 @@ Kai-Chin Hsu, kaichinh@usc.edu
 Lauren Shen, laurenys@usc.edu
 
 
+
+
 Project Proposal:
 
   We plan to create a website/game application which can in essence be used as a malicious virus.
