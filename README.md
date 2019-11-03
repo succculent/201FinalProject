@@ -14,6 +14,7 @@ Lauren Shen, laurenys@usc.edu
 
 
 Project Proposal:
+
   We plan to create a website/game application which can in essence be used as a malicious virus.
 We will have two types of users on the app: guests and authenticated users. An authenticated user
 may invite guests to create accounts on the website. A guest will enter the website and see a
