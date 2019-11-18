@@ -46,3 +46,4 @@ void SpriteComponent::SetTexture(SDL_Texture* texture)
 	// Set width/height
 	SDL_QueryTexture(texture, nullptr, nullptr, &mTexWidth, &mTexHeight);
 }
+

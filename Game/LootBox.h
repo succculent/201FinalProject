@@ -8,12 +8,12 @@
 #include <string>
 using namespace std;
 
-class LootBox : public Actor
+class LootBox:public Actor
 {
-
-private:
-	int cost;
-	int numInventory;
-	string name;
-	
+public:
+	LootBox(Game* game);
+protected:
+	int mCost;
+	int mInventory;
+	string mName;
 };

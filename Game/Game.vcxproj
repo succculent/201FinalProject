@@ -12,24 +12,38 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="LootBox.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="NormalLootBox.h" />
+    <ClInclude Include="PrestigeLootBox.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="UltraLootBox.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LootBox.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="NormalLootBox.cpp" />
+    <ClCompile Include="PrestigeLootBox.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
+    <ClCompile Include="UltraLootBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BC508D87-495F-4554-932D-DD68388B63CC}</ProjectGuid>

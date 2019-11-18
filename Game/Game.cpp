@@ -15,8 +15,15 @@
 #include <SDL/SDL_image.h>
 #include "Actor.h"
 #include "Random.h"
+#include "NormalLootBox.h"
+#include "UltraLootBox.h"
+#include "PrestigeLootBox.h"
 //#include "Background.h"
 #include "SDL/SDL_mixer.h"
+#include "SDL/SDL_ttf.h"
+#include <sstream>
+
+
 
 using namespace std;
 
@@ -29,7 +36,6 @@ bool Game::Initialize()
 	Random::Init();
 	//SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
-
 	lastTime = SDL_GetTicks();
 	currentTime = SDL_GetTicks();
 	
@@ -39,6 +45,12 @@ bool Game::Initialize()
 		SDL_Log("Unable to initialize SDL %s", SDL_GetError());
 		//if it fails to initialize quit
 		return 0;
+	}
+	if (TTF_Init() != 0)
+	{
+		SDL_Log("Couldn't initialize TTF lib: ", TTF_GetError());
+		return 1;
+
 	}
 	
 		
@@ -61,7 +73,12 @@ bool Game::Initialize()
 	}
 
 	
-	
+	OpenFont = TTF_OpenFont("Assets/Minecraft.ttf", 20);
+
+	if (!OpenFont) {
+		printf("TTF_OpenFont: %s\n", TTF_GetError());
+		// handle error
+	}
 
 	LoadData();
 
@@ -174,11 +191,14 @@ void Game::GenerateOutput()
 	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 0);
 	SDL_RenderClear(renderer);
 
-
 	for (int i = 0; i < mSprites.size(); i++)
 	{
 		mSprites[i]->Draw(renderer);
 	}
+	SDL_RenderCopy(renderer, BalanceUpdate, NULL, &BalanceUpdate_rect);
+	SDL_RenderCopy(renderer, PassiveUpdate, NULL, &PassiveUpdate_rect);
+
+
 	SDL_RenderPresent(renderer);
 
 }
@@ -211,6 +231,94 @@ void Game::LoadData()
 	Logo->SetPosition(Vector2(512, 60));
 	Logo->SetScale(0.3f);
 	AddActor(Logo);
+
+	// loot box sprites: https://bayat.itch.io/platform-game-assets?download
+	NormalLootBox* Box1 = new NormalLootBox(this);
+	Box1->SetPosition(Vector2(175, 250));
+	AddActor(Box1);
+
+	UltraLootBox* Box2 = new UltraLootBox(this);
+	Box2->SetPosition(Vector2(512, 250));
+	AddActor(Box2);
+
+	PrestigeLootBox* Box3 = new PrestigeLootBox(this);
+	Box3->SetPosition(Vector2(849, 250));
+	AddActor(Box3);
+	
+	Actor* Box1Text = new Actor(this);
+	SpriteComponent * Box1TextSprite = new SpriteComponent(Box1Text, 3);
+	Box1TextSprite->SetTexture(GetTexture("Assets/normalboxtext.png"));
+	Box1Text->SetSprite(Box1TextSprite);
+	Box1Text->SetPosition(Vector2(175, 430));
+	AddActor(Box1Text);
+
+	Actor* Box2Text = new Actor(this);
+	SpriteComponent * Box2TextSprite = new SpriteComponent(Box2Text, 3);
+	Box2TextSprite->SetTexture(GetTexture("Assets/ultraboxtext.png"));
+	Box2Text->SetSprite(Box2TextSprite);
+	Box2Text->SetPosition(Vector2(512, 430));
+	AddActor(Box2Text);
+
+	Actor* Box3Text = new Actor(this);
+	SpriteComponent * Box3TextSprite = new SpriteComponent(Box3Text, 3);
+	Box3TextSprite->SetTexture(GetTexture("Assets/prestigeboxtext.png"));
+	Box3Text->SetSprite(Box3TextSprite);
+	Box3Text->SetPosition(Vector2(849, 430));
+	AddActor(Box3Text);
+
+	Actor* Balance = new Actor(this);
+	SpriteComponent * BalanceSprite = new SpriteComponent(Balance, 3);
+	BalanceSprite->SetTexture(GetTexture("Assets/balance.png"));
+	Balance->SetSprite(BalanceSprite);
+	Balance->SetPosition(Vector2(125, 75));
+	Balance->SetScale(0.5f);
+	AddActor(Balance);
+
+	Actor* Passive = new Actor(this);
+	SpriteComponent * PassiveSprite = new SpriteComponent(Passive, 3);
+	PassiveSprite->SetTexture(GetTexture("Assets/coinpersecond.png"));
+	Passive->SetSprite(PassiveSprite);
+	Passive->SetPosition(Vector2(800, 75));
+	Passive->SetScale(0.5f);
+	AddActor(Passive);
+
+
+	Actor* Button = new Actor(this);
+	SpriteComponent * ButtonSprite = new SpriteComponent(Button, 3);
+	ButtonSprite->SetTexture(GetTexture("Assets/workbutton.png"));
+	Button->SetSprite(ButtonSprite);
+	Button->SetPosition(Vector2(512, 550));
+	AddActor(Button);
+
+	stringstream strs;
+	strs << balanceNum;
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
+
+	surfaceMessage1 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	BalanceUpdate = SDL_CreateTextureFromSurface(renderer, surfaceMessage1);
+
+	BalanceUpdate_rect.x = 205;
+	BalanceUpdate_rect.y = 68;
+	BalanceUpdate_rect.w = *w;
+	BalanceUpdate_rect.h = *h;
+	
+	strs.str(std::string());
+	strs << passiveNum;
+	temp_str = "";
+	temp_str = strs.str();
+	char_type = (char*)temp_str.c_str();
+	
+	surfaceMessage2 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	PassiveUpdate = SDL_CreateTextureFromSurface(renderer, surfaceMessage2);
+
+	PassiveUpdate_rect.x = 900;
+	PassiveUpdate_rect.y = 68;
+	PassiveUpdate_rect.w = *w;
+	PassiveUpdate_rect.h = *h;
+
 }
 
 void Game::UnloadData()

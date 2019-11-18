@@ -3,6 +3,8 @@
 #include <vector>
 #include <unordered_map>
 #include "SpriteComponent.h"
+#include "SDL/SDL_ttf.h"
+
 
 class Actor;
 // TODO
@@ -39,7 +41,22 @@ class Game {
 	
 	bool movingUp = false;
 	bool movingDown = false;
+	
+	SDL_Color Black = { 0,0,0 };
+	TTF_Font* OpenFont; 
+	
+	int balanceNum = 0;
+	int passiveNum = 0;
 
+	SDL_Texture* BalanceUpdate;
+	SDL_Rect BalanceUpdate_rect;
+	SDL_Surface* surfaceMessage1;
+
+	SDL_Texture* PassiveUpdate;
+	SDL_Rect PassiveUpdate_rect;
+	SDL_Surface* surfaceMessage2;
+	int * w = new int();
+	int* h = new int();
 	
 
 	bool gameRunning = true;

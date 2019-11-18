@@ -3,6 +3,7 @@
 #include <SDL/SDL_stdinc.h>
 #include "Math.h"
 #include "SpriteComponent.h"
+#include "CollisionComponent.h"
 class Actor
 {
 public:
@@ -56,7 +57,5 @@ protected:
 	float mScale;
 	float mRotation;
 	SpriteComponent* mSprite;
-
-
-	
+	CollisionComponent* mCollis;
 };
