@@ -1,6 +1,7 @@
 #include "SpriteComponent.h"
 #include "Actor.h"
 #include "Game.h"
+#include <iostream>
 
 SpriteComponent::SpriteComponent(Actor* owner, int drawOrder)
 	:Component(owner)
@@ -47,3 +48,7 @@ void SpriteComponent::SetTexture(SDL_Texture* texture)
 	SDL_QueryTexture(texture, nullptr, nullptr, &mTexWidth, &mTexHeight);
 }
 
+void SpriteComponent::AddImages(SDL_Texture* texture)
+{
+	//std::cout << " pepega " << std::endl;
+}

@@ -53,6 +53,7 @@ void Actor::UpdateActor(float deltaTime)
 
 void Actor::ProcessInput(const Uint8* keyState) 
 {
+	//std::cout << "here" << std::endl;
 	if (mState == EActive)
 	{
 		ActorInput(keyState);
@@ -73,7 +74,7 @@ void Actor::SetSprite(SpriteComponent* sprite)
 {
 	mSprite = sprite;
 }
-
+ 
 SpriteComponent* Actor::GetSprite()
 {
 	return mSprite;

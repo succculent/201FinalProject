@@ -12,6 +12,8 @@ public:
 	virtual void Draw(SDL_Renderer* renderer);
 	// Set the texture to draw for this psirte
 	virtual void SetTexture(SDL_Texture* texture);
+	virtual void AddImages(SDL_Texture* texture);
+
 
 	// Get the draw order for this sprite
 	int GetDrawOrder() const { return mDrawOrder; }

@@ -133,6 +133,11 @@ void Game::ProcessInput()
 		mVectorTemp[i]->ProcessInput(state);
 	}
 
+	for (int i = 0; i < mBox.size(); i++)
+	{
+		mBox[i]->ProcessInput(state);
+	}
+
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
 		gameRunning = false;
@@ -173,6 +178,11 @@ void Game::UpdateGame()
 		{
 			dead.push_back(temp[i]);
 		}
+	}
+
+	for (int i = 0; i < mBox.size(); i++)
+	{
+		mBox[i]->Update(deltaTime);
 	}
 
 	for (int j = 0; j < dead.size(); j++)
@@ -235,15 +245,18 @@ void Game::LoadData()
 	// loot box sprites: https://bayat.itch.io/platform-game-assets?download
 	NormalLootBox* Box1 = new NormalLootBox(this);
 	Box1->SetPosition(Vector2(175, 250));
-	AddActor(Box1);
+	//AddActor(Box1);
+	mBox.push_back(Box1);
 
 	UltraLootBox* Box2 = new UltraLootBox(this);
 	Box2->SetPosition(Vector2(512, 250));
 	AddActor(Box2);
+	mBox.push_back(Box2);
 
 	PrestigeLootBox* Box3 = new PrestigeLootBox(this);
 	Box3->SetPosition(Vector2(849, 250));
 	AddActor(Box3);
+	mBox.push_back(Box3);
 	
 	Actor* Box1Text = new Actor(this);
 	SpriteComponent * Box1TextSprite = new SpriteComponent(Box1Text, 3);

@@ -6,7 +6,9 @@
 #include "SDL/SDL_ttf.h"
 
 
+
 class Actor;
+class LootBox;
 // TODO
 class Game {
 	public:
@@ -62,7 +64,7 @@ class Game {
 	bool gameRunning = true;
 
 	std::vector<Actor*> mVector;
-	
+	std::vector<LootBox*> mBox;
 	std::unordered_map<std::string, SDL_Texture*> sprites;
 	std::vector <SpriteComponent*> mSprites;
 	SDL_Texture* background;

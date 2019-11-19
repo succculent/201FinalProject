@@ -16,7 +16,7 @@ public:
 	}
 
 	// Returns true if this box intersects with other
-	bool Intersect(const CollisionComponent* other);
+	bool Intersect(Vector2 other);
 
 	// Get min and max points of box
 	Vector2 GetMin() const;
