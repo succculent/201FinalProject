@@ -10,6 +10,9 @@
 
 int main(int argc, char** argv)
 {
+#ifdef __unix__
+	
+#endif
 	Game testing;
 	
 	testing.Initialize();
