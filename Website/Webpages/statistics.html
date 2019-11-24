@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<title>Stats Mockup</title>
+
+<head>
+	<style>
+		table, tr, td, th {
+			border: 1px solid black;
+		}
+		th, td {
+			width: 300px;
+			padding: 5px;
+		}
+		button {
+			margin: 20px;
+			width: 10%;
+			height: 8%;
+			font-size: 18px;
+			border-radius: 10px;
+		}
+	</style>
+
+<script>
+	function refreshPage() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "Statistics", false);
+		xhttp.send();
+
+		document.getElementById("stats").innerHTML = xhttp.responseText; 
+	}
+
+	function logOut() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "logout", false);
+		xhttp.send();
+	}
+</script>
+</head>
+
+<body style = "background-color:#7986cb;">
+<img src="" alt="Insert Logo Here" height="42" width="42">
+
+<div id = "stats"> 
+	<h1>Welcome, Administrator</h1>
+	<h2>Computation Statistics:</h2>
+	Last Updated at: 2019/11/09 14:05:58.429
+	<table>
+		<tr>
+			<th>Time Request Sent</th>
+			<th>Time Computation Received</th>
+			<th>Time Taken</th>
+			<th>IP Address</th>
+			<th>Returned Result</th>
+		</tr>
+		<tr>
+			<td>Example Time Sent</td>
+			<td>Example Time Received</td>
+			<td>Example Time Taken</td>
+			<td>Example IP Address</td>
+			<td>Example Returned Result</td>
+		</tr>
+		<tr>
+			<td>Example Time Sent</td>
+			<td>Example Time Received</td>
+			<td>Example Time Taken</td>
+			<td>Example IP Address</td>
+			<td>Example Returned Result</td>
+		</tr>
+		<tr>
+			<td>Example Time Sent</td>
+			<td>Example Time Received</td>
+			<td>Example Time Taken</td>
+			<td>Example IP Address</td>
+			<td>Example Returned Result</td>
+		</tr>
+		<tr>
+			<td>Example Time Sent</td>
+			<td>Example Time Received</td>
+			<td>Example Time Taken</td>
+			<td>Example IP Address</td>
+			<td>Example Returned Result</td>
+		</tr>
+	</table>
+</div>
+	<div id = "buttons">
+		<button id = "updatebutton" style = "font-size: 10pt" onclick="refreshPage()"> Refresh </button>
+		<button id = "logout" style = "font-size: 10pt" onclick = "logOut()" > Logout </button>
+	</div>
+
+</body>
