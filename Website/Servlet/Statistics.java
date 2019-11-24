@@ -57,7 +57,7 @@ public class Statistics extends HttpServlet {
 				addr.add(a);
 				String r = TimeStamp.toString(rs.getTimeStamp("received_time"));
 				receivedtime.add(r);
-				String re = Integer.toString(rs.getInt("result"));
+				String re = rs.getString("result");
 				result.add(re);
 			}
 
