@@ -20,6 +20,7 @@
     <ClInclude Include="LootBox.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="NormalLootBox.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PrestigeLootBox.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="resource.h" />
@@ -36,6 +37,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="NormalLootBox.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PrestigeLootBox.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
@@ -51,19 +53,19 @@
     <ProjectGuid>{BC508D87-495F-4554-932D-DD68388B63CC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Game</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

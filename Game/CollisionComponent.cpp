@@ -48,6 +48,6 @@ Vector2 CollisionComponent::GetMax() const
 
 const Vector2& CollisionComponent::GetCenter() const
 {
-	return mOwner->GetPosition();
+		return mOwner->GetPosition();
 }
 

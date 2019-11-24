@@ -18,6 +18,7 @@
 #include "NormalLootBox.h"
 #include "UltraLootBox.h"
 #include "PrestigeLootBox.h"
+#include "Player.h"
 //#include "Background.h"
 #include "SDL/SDL_mixer.h"
 #include "SDL/SDL_ttf.h"
@@ -138,10 +139,19 @@ void Game::ProcessInput()
 		mBox[i]->ProcessInput(state);
 	}
 
+	for (int i = 0; i < mButton.size(); i++)
+	{
+		mButton[i]->ProcessInput(state);
+	}
+
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
 		gameRunning = false;
 	}
+
+
+
+
 }
 
 void Game::UpdateGame()
@@ -183,6 +193,11 @@ void Game::UpdateGame()
 	for (int i = 0; i < mBox.size(); i++)
 	{
 		mBox[i]->Update(deltaTime);
+	}
+
+	for (int i = 0; i < mButton.size(); i++)
+	{
+		mButton[i]->Update(deltaTime);
 	}
 
 	for (int j = 0; j < dead.size(); j++)
@@ -296,12 +311,9 @@ void Game::LoadData()
 	AddActor(Passive);
 
 
-	Actor* Button = new Actor(this);
-	SpriteComponent * ButtonSprite = new SpriteComponent(Button, 3);
-	ButtonSprite->SetTexture(GetTexture("Assets/workbutton.png"));
-	Button->SetSprite(ButtonSprite);
-	Button->SetPosition(Vector2(512, 550));
+	Player* Button = new Player(this);
 	AddActor(Button);
+	mButton.push_back(Button);
 
 	stringstream strs;
 	strs << balanceNum;

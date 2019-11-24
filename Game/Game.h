@@ -7,8 +7,10 @@
 
 
 
+
 class Actor;
 class LootBox;
+class Player;
 // TODO
 class Game {
 	public:
@@ -65,7 +67,9 @@ class Game {
 
 	std::vector<Actor*> mVector;
 	std::vector<LootBox*> mBox;
+	std::vector<Player*> mButton;
 	std::unordered_map<std::string, SDL_Texture*> sprites;
 	std::vector <SpriteComponent*> mSprites;
 	SDL_Texture* background;
+
 };
