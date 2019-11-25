@@ -4,6 +4,7 @@
 #include "Math.h"
 #include "SpriteComponent.h"
 #include "CollisionComponent.h"
+#include "Game.h"
 class Actor
 {
 public:
@@ -37,10 +38,11 @@ public:
 	void SetScale(float scale) { mScale = scale; }
 	float GetRotation() const { return mRotation; }
 	void SetRotation(float rotation) { mRotation = rotation; }
+	CollisionComponent* GetCollisionComp() { return mCollis; }
 	Vector2 GetForward();
 	State GetState() const { return mState; }
 	void SetState(State state) { mState = state; }
-	class Game* GetGame() { return mGame; }
+	Game* GetGame() { return mGame; }
 	bool UpKey;
 	bool DownKey;
 	bool RightKey;
@@ -49,7 +51,7 @@ public:
 	
 
 protected:
-	class Game* mGame;
+	Game* mGame;
 	// Actor's state
 	State mState;
 	// Transform

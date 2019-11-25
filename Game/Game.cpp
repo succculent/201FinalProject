@@ -115,17 +115,30 @@ void Game::Loop()
 void Game::ProcessInput()
 {
 	SDL_Event event;
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
 
 	while (SDL_PollEvent(&event))
 	{
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+
 		if (event.type == SDL_QUIT)
 		{
 			gameRunning = false;
 		}
+		if (event.type == SDL_MOUSEBUTTONDOWN && mButton->GetCollisionComp()->Intersect(Vector2(x, y)));
+		{
+			mButton->clicked = true;
+		}
+		if (event.type == SDL_MOUSEBUTTONUP)
+		{
+			mButton->clickedFirst = true;
+		}
+
+
 		
 	}
 
-	const Uint8 *state = SDL_GetKeyboardState(NULL);
 
 	std::vector <Actor*> mVectorTemp = mVector;
 
@@ -139,10 +152,9 @@ void Game::ProcessInput()
 		mBox[i]->ProcessInput(state);
 	}
 
-	for (int i = 0; i < mButton.size(); i++)
-	{
-		mButton[i]->ProcessInput(state);
-	}
+	mButton->ProcessInput(state);
+	
+	
 
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
@@ -195,10 +207,9 @@ void Game::UpdateGame()
 		mBox[i]->Update(deltaTime);
 	}
 
-	for (int i = 0; i < mButton.size(); i++)
-	{
-		mButton[i]->Update(deltaTime);
-	}
+
+	mButton->Update(deltaTime);
+	
 
 	for (int j = 0; j < dead.size(); j++)
 	{
@@ -206,8 +217,20 @@ void Game::UpdateGame()
 
 	}
 
+	stringstream strs;
+	strs << mButton->getBalance();
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
 
+
+	surfaceMessage1 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	BalanceUpdate = SDL_CreateTextureFromSurface(renderer, surfaceMessage1);
 	
+	BalanceUpdate_rect.x = 205;
+	BalanceUpdate_rect.y = 68;
+	BalanceUpdate_rect.w = *w;
+	BalanceUpdate_rect.h = *h;
 }
 
 void Game::GenerateOutput()
@@ -311,9 +334,8 @@ void Game::LoadData()
 	AddActor(Passive);
 
 
-	Player* Button = new Player(this);
-	AddActor(Button);
-	mButton.push_back(Button);
+	mButton = new Player(this);
+	AddActor(mButton);
 
 	stringstream strs;
 	strs << balanceNum;

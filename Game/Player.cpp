@@ -20,30 +20,21 @@ void Player::ProcessInput(const Uint8* keyState)
 
 	if ((SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)))
 	{
-		if (mouseSpot && !clicked)
+		if (mouseSpot && clicked && clickedFirst)
 		{
 			cout << updateBalance(multiplier) << endl;
-			clicked = true;
+			clickedFirst = false;
+			clicked = false;
 		}
 	}
+	
+
 	
 }
 
 void Player::Update(float deltaTime)
 {
-	if (clicked)
-	{
-		if (lastTime > 0.1f)
-		{
-			lastTime = 0;
-			clicked = false;
-			
-		}
-		else
-		{
-			lastTime += deltaTime;
-		}
-	}
+	
 }
 
 int Player::updateBalance(int coin)

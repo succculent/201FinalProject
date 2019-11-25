@@ -20,9 +20,10 @@ public:
 	int getBalance();
 	int updateBalance(int coin);
 	void updateClickMultiplier(int mult);
+	bool clicked = false;
+	bool clickedFirst = true;
 private:
 	int balance = 0;
 	int multiplier = 1;
-	bool clicked = false;
 	float lastTime = 0.0f;
 };

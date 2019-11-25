@@ -27,7 +27,10 @@ class Game {
 	void UnloadData();
 	void AddSprite(SpriteComponent* sprite);
 	void RemoveSprite(SpriteComponent* sprite);
-
+	Player* GetPlayer()
+	{
+		return mButton;
+	}
 	SDL_Texture* GetTexture(std::string fileName);
 
 	private:
@@ -67,7 +70,7 @@ class Game {
 
 	std::vector<Actor*> mVector;
 	std::vector<LootBox*> mBox;
-	std::vector<Player*> mButton;
+	Player* mButton;
 	std::unordered_map<std::string, SDL_Texture*> sprites;
 	std::vector <SpriteComponent*> mSprites;
 	SDL_Texture* background;
