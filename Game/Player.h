@@ -24,6 +24,6 @@ public:
 	bool clickedFirst = true;
 private:
 	int balance = 0;
-	int multiplier = 1;
+	int multiplier = 50;
 	float lastTime = 0.0f;
 };

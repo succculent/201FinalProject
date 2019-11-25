@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Game.h"
+#include "Time.h"
 using namespace std;
 Player::Player(Game* game):Actor(game)
 {
@@ -22,9 +23,11 @@ void Player::ProcessInput(const Uint8* keyState)
 	{
 		if (mouseSpot && clicked && clickedFirst)
 		{
-			cout << updateBalance(multiplier) << endl;
+			updateBalance(multiplier);
+			//cout << updateBalance(multiplier) << endl;
 			clickedFirst = false;
 			clicked = false;
+			
 		}
 	}
 	

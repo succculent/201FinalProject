@@ -3,6 +3,7 @@
 #include "Actor.h"
 #include "Game.h"
 #include "Component.h"
+#include "Item.h"
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -24,4 +25,7 @@ protected:
 	bool open = false;
 	int currentFrame = 0;
 	float mAnimTimer = 0.0f;
+
+	int currItem = -1;
+	Item* displayItem;
 };
