@@ -38,6 +38,8 @@ void LootBox::Update(float deltaTime)
 	
 	if (mAnimTimer > 5.0f && opening)
 	{
+		mGame->GetPlayer()->updateBalance(15);
+
 		opening = false;
 		open = false;
 		mAnimTimer = 0.0f;
