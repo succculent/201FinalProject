@@ -23,7 +23,7 @@ public:
 	bool clicked = false;
 	bool clickedFirst = true;
 private:
-	int balance = 0;
+	int balance = 50;
 	int multiplier = 50;
 	float lastTime = 0.0f;
 };

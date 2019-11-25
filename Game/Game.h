@@ -27,7 +27,9 @@ class Game {
 	void UnloadData();
 	void AddSprite(SpriteComponent* sprite);
 	void RemoveSprite(SpriteComponent* sprite);
-	bool inProgress = false;
+	bool Box1inProgress = false;
+	bool Box2inProgress = false;
+	bool Box3inProgress = false;
 	Player* GetPlayer()
 	{
 		return mButton;

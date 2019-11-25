@@ -16,17 +16,17 @@ void LootBox::Update(float deltaTime)
 	srand(time(NULL));
 	int random = rand() % 4 + 1;
 
-	if (open && mAnimTimer < 5.0f && !mGame->inProgress)
+	if (open && mAnimTimer < 5.0f && (!mGame->Box2inProgress || !mGame->Box3inProgress))
 	{
 		opening = true;
 		mAnimTimer += deltaTime;
 		//std::cout << mAnimTimer << endl;
 		mSprite->Update(deltaTime);
+		mGame->Box1inProgress = true;
 		currItem = random;
-		mGame->inProgress = true;
 	}
 	
-	if (mAnimTimer > 0.5f && !displayItem)
+	if (mAnimTimer > 0.5f && !displayItem  )
 	{
 		displayItem = new Item(mGame, "bread", 15, "A yummy snack, +15 coins!");
 		SpriteComponent* temp = new SpriteComponent(this, 150);
@@ -39,13 +39,12 @@ void LootBox::Update(float deltaTime)
 	if (mAnimTimer > 5.0f && opening)
 	{
 		mGame->GetPlayer()->updateBalance(15);
-
 		opening = false;
 		open = false;
 		mAnimTimer = 0.0f;
 		mGame->RemoveSprite(displayItem->GetSprite());
 		displayItem = NULL;
-		mGame->inProgress = false;
+		mGame->Box1inProgress = false;
 	}
 }
 void LootBox::ProcessInput(const Uint8* keyState)
