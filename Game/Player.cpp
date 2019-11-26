@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "Game.h"
-#include "Time.h"
+#include "time.h"
 using namespace std;
 Player::Player(Game* game):Actor(game)
 {

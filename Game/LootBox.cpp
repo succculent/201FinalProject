@@ -2,7 +2,7 @@
 #include "LootBox.h"
 #include "Actor.h"
 #include "Player.h"
-#include "Time.h"
+#include "time.h"
 #include "SDL_mouse.h"
 
 
