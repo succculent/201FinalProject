@@ -242,7 +242,7 @@ void LootBox::Update(float deltaTime)
 			mGame->AddActor(displayItem);
 			mGame->GetPlayer()->updateBalance(-mGame->GetPlayer()->getBalance());
 			mGame->GetPlayer()->setPassive(-mGame->GetPlayer()->getPassive());
-			mGame->GetPlayer()->setMultiplier(-mGame->GetPlayer()->getMultiplier());
+			mGame->GetPlayer()->setMultiplier(-mGame->GetPlayer()->getMultiplier()+1);
 		}
 	}
 
