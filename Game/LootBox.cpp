@@ -85,7 +85,7 @@ void LootBox::Update(float deltaTime)
 		}
 		else if (random == 5)
 		{
-			displayItem = new Item(mGame, "bag of chips", 0, "You eat the chips. Was this worth 50 coins?");
+			displayItem = new Item(mGame, "bag of chips", 0, "You eat the chips. Was this worth all the coins you spent?");
 			SpriteComponent* temp = new SpriteComponent(this, 150);
 			temp->SetTexture(mGame->GetTexture("Assets/chips.png"));
 			displayItem->SetSprite(temp);
@@ -134,7 +134,7 @@ void LootBox::Update(float deltaTime)
 		{
 			displayItem = new Item(mGame, "brain", 0, "You watched rick and morty and now have 500 iq. +25 coins per click");
 			SpriteComponent* temp = new SpriteComponent(this, 150);
-			temp->SetTexture(mGame->GetTexture("Assets/icecream.png"));
+			temp->SetTexture(mGame->GetTexture("Assets/brain.png"));
 			displayItem->SetSprite(temp);
 			displayItem->SetPosition(GetPosition());
 			mGame->AddActor(displayItem);
