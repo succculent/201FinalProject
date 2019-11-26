@@ -63,23 +63,24 @@ void LootBox::Update(float deltaTime)
 		}
 		else if (random == 3)
 		{
-			displayItem = new Item(mGame, "cs degree",0, "These are pretty useful... +5 coins per second");
+			displayItem = new Item(mGame, "cs degree",0, "These are pretty useful... +25 coins per click");
 			SpriteComponent* temp = new SpriteComponent(this, 150);
 			temp->SetTexture(mGame->GetTexture("Assets/csdegree.png"));
 			displayItem->SetSprite(temp);
 			displayItem->SetPosition(GetPosition());
 			mGame->AddActor(displayItem);
-			mGame->GetPlayer()->setPassive(5);
+			mGame->GetPlayer()->setMultiplier(25);
+
 		}
 		else if (random == 4)
 		{
-			displayItem = new Item(mGame, "laptop", 0, "Write yourself a click bot!");
+			displayItem = new Item(mGame, "laptop", 0, "Write yourself a click bot! +5 coins per second");
 			SpriteComponent* temp = new SpriteComponent(this, 150);
 			temp->SetTexture(mGame->GetTexture("Assets/laptop.png"));
 			displayItem->SetSprite(temp);
 			displayItem->SetPosition(GetPosition());
 			mGame->AddActor(displayItem);
-			mGame->GetPlayer()->setMultiplier(51);
+			mGame->GetPlayer()->setPassive(5);
 		}
 		else if (random == 5)
 		{
@@ -95,6 +96,24 @@ void LootBox::Update(float deltaTime)
 			displayItem = new Item(mGame, "trash", 0, "congrats!");
 			SpriteComponent* temp = new SpriteComponent(this, 150);
 			temp->SetTexture(mGame->GetTexture("Assets/trash.png"));
+			displayItem->SetSprite(temp);
+			displayItem->SetPosition(GetPosition());
+			mGame->AddActor(displayItem);
+		}
+		else if (random == 7)
+		{
+			displayItem = new Item(mGame, "boba", 0, "If you really think about it, you're wasting your money");
+			SpriteComponent* temp = new SpriteComponent(this, 150);
+			temp->SetTexture(mGame->GetTexture("Assets/boba.png"));
+			displayItem->SetSprite(temp);
+			displayItem->SetPosition(GetPosition());
+			mGame->AddActor(displayItem);
+		}
+		else if (random == 8)
+		{
+			displayItem = new Item(mGame, "boba", 0, "If you really think about it, you're wasting your money");
+			SpriteComponent* temp = new SpriteComponent(this, 150);
+			temp->SetTexture(mGame->GetTexture("Assets/boba.png"));
 			displayItem->SetSprite(temp);
 			displayItem->SetPosition(GetPosition());
 			mGame->AddActor(displayItem);
