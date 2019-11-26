@@ -35,6 +35,11 @@ class Game {
 	bool Box3inProgress = false;
 	void ItemMessage(string itemName, string desc);
 	void RemoveItemMessage();
+	void SetMessage(string s);
+	void RemoveMessage();
+	bool messageactive = false;
+	void UpdateCoinPerClick(int coin);
+
 	Player* GetPlayer()
 	{
 		return mButton;
@@ -74,6 +79,10 @@ class Game {
 	SDL_Texture* GameMessage;
 	SDL_Rect GameMessage_rect;
 	SDL_Surface* surfaceMessage3;
+
+	SDL_Texture* CoinPerClick;
+	SDL_Rect CoinPerClick_rect;
+	SDL_Surface* surfaceMessage4;
 	int * w = new int();
 	int* h = new int();
 	
@@ -87,4 +96,5 @@ class Game {
 	std::vector <SpriteComponent*> mSprites;
 	SDL_Texture* background;
 
+	float messagetime = 0.0f;
 };

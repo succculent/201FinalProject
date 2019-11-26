@@ -22,12 +22,13 @@ public:
 	int getMultiplier() { return multiplier;};
 	void setMultiplier(int m) { multiplier += m; };
 	void setPassive(int s) { passivemult += s; };
+	int getPassive() { return passivemult; }
 	int getCPS() { return passivemult; }
 	bool clicked = false;
 	bool clickedFirst = true;
 private:
-	int balance = 50;
-	int multiplier = 50;
+	int balance = 0;
+	int multiplier = 1;
 	float lastTime = 0.0f;
 	int passivemult = 0;
 	int cps = 0;

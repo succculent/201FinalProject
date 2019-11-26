@@ -18,11 +18,11 @@ void AnimatedSprite::Update(float deltaTime)
 	mAnimTimer += mAnimSpeed * deltaTime;
 	int temp = (int)mAnimTimer;
 	
-	if (temp > mImages.size()-1 && mAnimTimer/mAnimSpeed < 5.0f)
+	if (temp > mImages.size()-1 && mAnimTimer/mAnimSpeed < 3.0f)
 	{
 		temp = mImages.size() - 1;
 	}
-	else if (mAnimTimer/mAnimSpeed >5.0f)
+	else if (mAnimTimer/mAnimSpeed >3.0f)
 	{
 		mAnimTimer = 0.0f;
 		temp = 0;

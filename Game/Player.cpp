@@ -7,10 +7,11 @@ Player::Player(Game* game):Actor(game)
 	SpriteComponent * ButtonSprite = new SpriteComponent(this, 3);
 	ButtonSprite->SetTexture(game->GetTexture("Assets/workbutton.png"));
 	SetSprite(ButtonSprite);
-	SetPosition(Vector2(512, 550));
+	SetPosition(Vector2(512, 600));
 	
 	mCollis = new CollisionComponent(this);
 	mCollis->SetSize(256, 50);
+	game->UpdateCoinPerClick(1);
 }
 
 void Player::ProcessInput(const Uint8* keyState)
