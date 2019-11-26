@@ -19,6 +19,12 @@ void miner(int argc, char** argv) {
 	//check if result is a solution
 }
 
+unsigned long long int nonce = 0;
+int counter;
+for (counter = 0; counter < 50; ++counter) {
+	srand(nonce);
+	nonce = 4294967296 * ((double)rand() / RAND_MAX);
+
 
 
 //notifying blockchain
