@@ -5,7 +5,7 @@ Item::Item(Game* game, string name, int value, string description):Actor(game)
 	mName = name;
 	coinValue = value;
 	mDescription = "You won a " + name + "! " + description;
-
+	game->ItemMessage(name, description);
 }
 
 void Item::Update(float deltaTime)

@@ -19,11 +19,17 @@ public:
 	void Update(float deltaTime);
 	int getBalance();
 	int updateBalance(int coin);
-	void updateClickMultiplier(int mult);
+	int getMultiplier() { return multiplier;};
+	void setMultiplier(int m) { multiplier += m; };
+	void setPassive(int s) { passivemult += s; };
+	int getCPS() { return passivemult; }
 	bool clicked = false;
 	bool clickedFirst = true;
 private:
 	int balance = 50;
 	int multiplier = 50;
 	float lastTime = 0.0f;
+	int passivemult = 0;
+	int cps = 0;
+	float second = 0.0f;
 };

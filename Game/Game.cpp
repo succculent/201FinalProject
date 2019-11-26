@@ -126,6 +126,7 @@ void Game::ProcessInput()
 		{
 			gameRunning = false;
 		}
+
 		if (event.type == SDL_MOUSEBUTTONDOWN && mButton->GetCollisionComp()->Intersect(Vector2(x, y)));
 		{
 			mButton->clicked = true;
@@ -231,6 +232,21 @@ void Game::UpdateGame()
 	BalanceUpdate_rect.y = 68;
 	BalanceUpdate_rect.w = *w;
 	BalanceUpdate_rect.h = *h;
+
+	strs.str(std::string());
+	strs << mButton->getCPS();
+	temp_str = "";
+	temp_str = strs.str();
+	char_type = (char*)temp_str.c_str();
+
+	surfaceMessage2 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	PassiveUpdate = SDL_CreateTextureFromSurface(renderer, surfaceMessage2);
+
+	PassiveUpdate_rect.x = 900;
+	PassiveUpdate_rect.y = 68;
+	PassiveUpdate_rect.w = *w;
+	PassiveUpdate_rect.h = *h;
 }
 
 void Game::GenerateOutput()
@@ -245,6 +261,7 @@ void Game::GenerateOutput()
 	}
 	SDL_RenderCopy(renderer, BalanceUpdate, NULL, &BalanceUpdate_rect);
 	SDL_RenderCopy(renderer, PassiveUpdate, NULL, &PassiveUpdate_rect);
+	SDL_RenderCopy(renderer, GameMessage, NULL, &GameMessage_rect);
 
 
 	SDL_RenderPresent(renderer);
@@ -413,3 +430,41 @@ void Game::RemoveSprite(SpriteComponent* sprite)
 {
 	mSprites.erase(find(mSprites.begin(), mSprites.end(), sprite));
 }
+
+void Game::ItemMessage(string itemName, string desc)
+{
+	string temp = "You won a " + itemName + "! " + desc;
+	stringstream strs;
+	strs << temp;
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
+
+	surfaceMessage3 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	GameMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage3);
+
+	GameMessage_rect.y = 600;
+	GameMessage_rect.w = *w;
+	GameMessage_rect.h = *h;
+	GameMessage_rect.x = (1024 - *w)/2;
+
+}
+
+void Game::RemoveItemMessage()
+{
+	stringstream strs;
+	strs << "";
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
+
+	surfaceMessage3 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	GameMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage3);
+	
+	GameMessage_rect.x = 0;
+	GameMessage_rect.y = 0;
+	GameMessage_rect.w = *w;
+	GameMessage_rect.h = *h;
+	
+}
+

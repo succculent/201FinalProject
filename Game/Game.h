@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include "SpriteComponent.h"
 #include "SDL/SDL_ttf.h"
+#include <string>
+using namespace std;
 
 
 
@@ -27,9 +29,12 @@ class Game {
 	void UnloadData();
 	void AddSprite(SpriteComponent* sprite);
 	void RemoveSprite(SpriteComponent* sprite);
+	string BoxInProgress = "";
 	bool Box1inProgress = false;
 	bool Box2inProgress = false;
 	bool Box3inProgress = false;
+	void ItemMessage(string itemName, string desc);
+	void RemoveItemMessage();
 	Player* GetPlayer()
 	{
 		return mButton;
@@ -65,6 +70,10 @@ class Game {
 	SDL_Texture* PassiveUpdate;
 	SDL_Rect PassiveUpdate_rect;
 	SDL_Surface* surfaceMessage2;
+
+	SDL_Texture* GameMessage;
+	SDL_Rect GameMessage_rect;
+	SDL_Surface* surfaceMessage3;
 	int * w = new int();
 	int* h = new int();
 	

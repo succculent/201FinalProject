@@ -18,6 +18,7 @@ public:
 	void ProcessInput(const Uint8* keyState);
 	void Update(float deltaTime);
 protected:
+	int random = -1;
 	int mCost;
 	int mInventory;
 	string mName;
@@ -25,7 +26,7 @@ protected:
 	bool open = false;
 	int currentFrame = 0;
 	float mAnimTimer = 0.0f;
-
+	int maxRandom = 0;
 	int currItem = -1;
 	Item* displayItem;
 };

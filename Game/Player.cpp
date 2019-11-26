@@ -21,7 +21,7 @@ void Player::ProcessInput(const Uint8* keyState)
 
 	if ((SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)))
 	{
-		if (mouseSpot && clicked && clickedFirst)
+		if (mouseSpot && clicked && clickedFirst )
 		{
 			updateBalance(multiplier);
 			//cout << updateBalance(multiplier) << endl;
@@ -37,7 +37,13 @@ void Player::ProcessInput(const Uint8* keyState)
 
 void Player::Update(float deltaTime)
 {
-	
+	second += deltaTime;
+	if (second > 1.0f)
+	{
+		balance += passivemult;
+		second = 0.0f;
+	}
+	//cout << cps << endl;
 }
 
 int Player::updateBalance(int coin)
@@ -51,8 +57,4 @@ int Player::getBalance()
 	return balance;
 }
 
-void Player::updateClickMultiplier(int mult)
-{
-	multiplier = mult;
-}
 
