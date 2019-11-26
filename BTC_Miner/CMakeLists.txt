@@ -12,9 +12,9 @@ add_subdirectory(cpr)
 # add the executable
 add_executable(
 	BTC_Miner 
-	test-miner.cpp
+	temp-miner.cpp
 
 )
 # link CPR
+include_directories(${CPR_INCLUDE_DIRS})
 target_link_libraries(BTC_Miner ${CPR_LIBRARIES})
-target_include_directories(BTC_Miner ${CPR_INCLUDE_DIRS})

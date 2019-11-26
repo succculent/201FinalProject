@@ -1,7 +1,12 @@
 #include <cpr/cpr.h> //cpr is a REST API for C++
 
-void miner() {
-	//setup
+void miner(int argc, char** argv) {
+	// SETUP
+	// retrieve latest block
+	auto latest = cpr::Get(cpr::Url{"https://blockchain.info/latestblock"});
+	print(latest);
+
+
 	//set difficulty
 	//set max nonce
 	//retrieve block
