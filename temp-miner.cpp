@@ -1,4 +1,5 @@
 #include <cpr/cpr.h> //cpr is a REST API for C++
+#include <cstdlib>
 
 void miner(int argc, char** argv) {
 	// SETUP
@@ -19,7 +20,11 @@ void miner(int argc, char** argv) {
 	//check if result is a solution
 }
 
-
-
+unsigned long long int nonce = 0;
+int counter;
+for (counter = 0; counter < 50; ++counter) {
+	srand(nonce);
+	nonce = 4294967296 * ((double)rand() / RAND_MAX);
+}
 //notifying blockchain
 
