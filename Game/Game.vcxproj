@@ -101,14 +101,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\Libraries\SDL\lib\win\x86;..\Libraries\GLEW\lib\win\x86;..\Libraries\SOIL\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Libraries\SDL2\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:msvcrt.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
-        xcopy "$(ProjectDir)\..\Libraries\SDL\lib\win\x86\*.dll" "$(OutDir)" /i /s /y
-        xcopy "$(ProjectDir)\..\Libraries\GLEW\lib\win\x86\*.dll" "$(OutDir)" /i /s /y
+        xcopy "$(ProjectDir)\..\Libraries\SDL2\lib\win\x86\*.dll" "$(OutDir)" /i /s /y
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -131,13 +130,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\Libraries\SDL\lib\win\x86;..\Libraries\GLEW\lib\win\x86;..\Libraries\SOIL\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Libraries\SDL2\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
-        xcopy "$(ProjectDir)\..\Libraries\SDL\lib\win\x86\*.dll" "$(OutDir)" /i /s /y
-        xcopy "$(ProjectDir)\..\Libraries\GLEW\lib\win\x86\*.dll" "$(OutDir)" /i /s /y
+        xcopy "$(ProjectDir)\..\Libraries\SDL2\lib\win\x86\*.dll" "$(OutDir)" /i /s /y
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
