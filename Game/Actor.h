@@ -47,6 +47,7 @@ public:
 	bool DownKey;
 	bool RightKey;
 	bool LeftKey;
+	bool opening = false;
 
 	
 

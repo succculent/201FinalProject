@@ -22,7 +22,6 @@ protected:
 	int mCost;
 	int mInventory;
 	string mName;
-	bool opening = false;
 	bool open = false;
 	int currentFrame = 0;
 	float mAnimTimer = 0.0f;

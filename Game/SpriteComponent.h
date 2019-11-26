@@ -20,7 +20,9 @@ public:
 	// Get the width/height of the texture
 	int GetTexHeight() const { return mTexHeight; }
 	int GetTexWidth() const { return mTexWidth; }
+
 protected:
+
 	// Texture to draw
 	SDL_Texture* mTexture;
 	// Draw order

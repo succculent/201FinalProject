@@ -12,6 +12,7 @@ LootBox::LootBox(Game* game) :Actor(game)
 }
 void LootBox::Update(float deltaTime)
 {
+	
 	if (mGame->BoxInProgress.compare(mName) != 0)
 	{
 		if (mGame->BoxInProgress.empty())
@@ -29,7 +30,7 @@ void LootBox::Update(float deltaTime)
 		random = rand() % maxRandom + 1;
 	}
 
-	if (open && mAnimTimer < 5.0f)
+	if (open && mAnimTimer < 3.0f)
 	{
 		opening = true;
 		mAnimTimer += deltaTime;
@@ -236,13 +237,15 @@ void LootBox::Update(float deltaTime)
 		{
 			displayItem = new Item(mGame, "scandal", 0, "Lose everything you ever worked for LUL.");
 			SpriteComponent* temp = new SpriteComponent(this, 150);
-			temp->SetTexture(mGame->GetTexture("Assets/cash.png"));
+			temp->SetTexture(mGame->GetTexture("Assets/sc.png"));
 			displayItem->SetSprite(temp);
 			displayItem->SetPosition(GetPosition());
 			mGame->AddActor(displayItem);
 			mGame->GetPlayer()->updateBalance(-mGame->GetPlayer()->getBalance());
 			mGame->GetPlayer()->setPassive(-mGame->GetPlayer()->getPassive());
 			mGame->GetPlayer()->setMultiplier(-mGame->GetPlayer()->getMultiplier()+1);
+			mGame->UpdateCoinPerClick(mGame->GetPlayer()->getMultiplier());
+
 		}
 	}
 
@@ -253,7 +256,6 @@ void LootBox::Update(float deltaTime)
 		mAnimTimer = 0.0f;
 		mGame->RemoveSprite(displayItem->GetSprite());
 		displayItem = NULL;
-		mGame->Box1inProgress = false;
 		random = -1;
 		mGame->RemoveItemMessage();
 		mGame->BoxInProgress = "";

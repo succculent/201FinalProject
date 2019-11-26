@@ -12,6 +12,7 @@ public:
 
 private:
 	std::vector<SDL_Texture*>mImages;
-	float mAnimTimer = 0.0;
+	float mAnimTimer = 0.0f;
 	bool animationComplete = false;
+	float mAnimTime = 0.0f;
 };
