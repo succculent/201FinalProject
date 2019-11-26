@@ -1,9 +1,9 @@
 #pragma once
-#include "SDL/SDL.h"
+#include "SDL.h"
 #include <vector>
 #include <unordered_map>
 #include "SpriteComponent.h"
-#include "SDL/SDL_ttf.h"
+#include "SDL_ttf.h"
 #include <string>
 using namespace std;
 

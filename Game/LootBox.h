@@ -1,5 +1,5 @@
 #pragma once
-#include "SDL/SDL.h"
+#include "SDL.h"
 #include "Actor.h"
 #include "Game.h"
 #include "Component.h"
@@ -7,7 +7,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
-#include <SDL/SDL_stdinc.h>
+#include <SDL_stdinc.h>
 
 using namespace std;
 

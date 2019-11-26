@@ -1,6 +1,6 @@
 #pragma once
-#include <SDL/SDL_stdinc.h>
-#include "SDL/SDL.h"
+#include <SDL_stdinc.h>
+#include "SDL.h"
 
 class Component
 {

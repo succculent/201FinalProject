@@ -3,8 +3,7 @@
 #include "Actor.h"
 #include "Player.h"
 #include "Time.h"
-
-#include <SDL/SDL_stdinc.h>
+#include "SDL_mouse.h"
 
 
 LootBox::LootBox(Game* game):Actor(game)
@@ -45,12 +44,14 @@ void LootBox::Update(float deltaTime)
 	{
 		if (random == 1)
 		{
-			displayItem = new Item(mGame, "bread", 15, "A yummy snack, +15 coins!");
+			displayItem = new Item(mGame, "bread", 15, "A yummy snack, +100 coins!");
 			SpriteComponent* temp = new SpriteComponent(this, 150);
 			temp->SetTexture(mGame->GetTexture("Assets/bread.png"));
 			displayItem->SetSprite(temp);
 			displayItem->SetPosition(GetPosition());
 			mGame->AddActor(displayItem);
+			mGame->GetPlayer()->updateBalance(100);
+
 		}
 		else if (random == 2)
 		{
@@ -122,7 +123,6 @@ void LootBox::Update(float deltaTime)
 	
 	if (mAnimTimer > 5.0f && opening)
 	{
-		//mGame->GetPlayer()->updateBalance(15);
 		opening = false;
 		open = false;
 		mAnimTimer = 0.0f;

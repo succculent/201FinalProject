@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <SDL/SDL_stdinc.h>
+#include <SDL_stdinc.h>
 #include "Math.h"
 #include "SpriteComponent.h"
 #include "CollisionComponent.h"
