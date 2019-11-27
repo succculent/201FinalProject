@@ -6,7 +6,7 @@ import merkletools
 import random
 #import time
 
-NONCE_MAX = 100000
+NONCE_MAX = 4294967296
 API_URL = "https://blockchain.info/latestblock"
 TX_KEY = "txIndexes"
 PREVHASH_KEY = "hash"
