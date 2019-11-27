@@ -1,5 +1,8 @@
 set(LIBCXX_LIB_CMAKEFILES_DIR "${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}"  PARENT_SCOPE)
 
+find_package(PythonLibs REQUIRED)
+
+include_directories(/usr/lib/ ${PYTHON_INCLUDE_DIRS})
 # Get sources
 set(LIBCXX_SOURCES
   algorithm.cpp
@@ -160,7 +163,7 @@ if (LIBCXX_ENABLE_SHARED)
   if(COMMAND llvm_setup_rpath)
     llvm_setup_rpath(cxx_shared)
   endif()
-  target_link_libraries(cxx_shared PRIVATE ${LIBCXX_LIBRARIES})
+  target_link_libraries(cxx_shared PRIVATE ${LIBCXX_LIBRARIES} ${Python3_LIBRARIES})
   set_target_properties(cxx_shared
     PROPERTIES
       COMPILE_FLAGS "${LIBCXX_COMPILE_FLAGS}"

