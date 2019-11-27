@@ -1,15 +1,24 @@
 #include <cpr/cpr.h> //cpr is a REST API for C++
-
-void miner(int argc, char** argv) {
+#include <iostream>
+#include <string>
+using namespace std;
+int main(int argc, char** argv) {
 	// SETUP
 	// retrieve latest block
-	auto latest = cpr::Get(cpr::Url{"https://blockchain.info/latestblock"});
-
-
-
+	auto latest = cpr::Get(cpr::Url{"https://blockchain.info/latestblock"},
+		                   cpr::Header{{"Access-Control-Allow-Origin", "*"}},
+		                   cpr::Parameters{{"cors", "true"}},
+		                   cpr::Authentication{"bitcoinrpc", "232fb3276bbb7437d265298ea48bdc46"},
+		                   cpr::VerifySsl(false)	
+		                   );
+	std::cout << "BEEP BOOP\n";
+	std::cout << "status code is " << latest.status_code << " and text is \n" << latest.text << "\n";
 	//set difficulty
+	double difficulty = stod(cpr::Get(cpr::Url{"https://blockchain.info/q/getdifficulty"},
+							   cpr::VerifySsl(false)).text);
+	std::cout << "difficulty: " << difficulty;
 	//set max nonce
-	//retrieve block
+	
 	//compute merkle root from transactions once transactions are full
 
 	//mining 
