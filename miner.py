@@ -4,7 +4,7 @@ import json
 import hashlib
 import merkletools
 import random
-import time
+#import time
 
 NONCE_MAX = 100000
 API_URL = "https://blockchain.info/latestblock"
@@ -29,12 +29,13 @@ with urllib.request.urlopen(API_URL) as url:
     root_value = mt.get_merkle_root();
 
     #DEBUG
-    print ("Merkle Root: " + root_value)
-    print("Previous Hash: " + prevHash)
-    print("Time: " + str(data["time"]))
+    #print ("Merkle Root: " + root_value)
+    #print("Previous Hash: " + prevHash)
+    #print("Time: " + str(data["time"]))
     #print("Transactions: ")
     #print(transactions)    
-    start_time = time.time()
+    #start_time = time.time()
+
     #set up threshold
     comp = (THRESHOLD) * '0'
 
@@ -52,8 +53,7 @@ with urllib.request.urlopen(API_URL) as url:
         if str(h)[:THRESHOLD]==comp:
             hashdict[nonce] = h
 
-    for h in hashdict:
-        print (str(h) + ": " + str(hashdict[h]))
-
     #DEBUG
-    print("--- %s seconds ---" % (time.time() - start_time))
+    #for h in hashdict:
+    #    print (str(h) + ": " + str(hashdict[h]))
+    #print("--- %s seconds ---" % (time.time() - start_time))
