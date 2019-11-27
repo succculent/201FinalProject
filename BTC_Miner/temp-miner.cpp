@@ -18,17 +18,20 @@ int main(int argc, char** argv) {
 							   cpr::VerifySsl(false)).text);
 	std::cout << "difficulty: " << difficulty;
 	//set max nonce
-	
+	unsigned long long int nonce = 0;
 	//compute merkle root from transactions once transactions are full
 
 	//mining 
 	// **assume nonce and merkle root already set**
 	//loop nonce increments/randomizes
+	int counter;
+	for (counter = 0; counter < 50; ++counter) {
+		srand(nonce);
+		nonce = 4294967296 * ((double)rand() / RAND_MAX);
+	}
 	//compute double sha256
 	//check if result is a solution
 }
-
-
 
 //notifying blockchain
 
