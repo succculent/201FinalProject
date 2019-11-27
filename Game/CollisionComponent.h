@@ -1,6 +1,8 @@
-#pragma once
-#include "Component.h"
-#include "Math.h"
+
+
+#pragma once	
+#include "Component.h"	
+#include "Math.h"	
 
 class CollisionComponent : public Component
 {
@@ -9,6 +11,7 @@ public:
 	~CollisionComponent();
 
 	// Set width/height of this box
+	// Set width/height of this box	
 	void SetSize(float width, float height)
 	{
 		mWidth = width;
@@ -23,6 +26,9 @@ public:
 	Vector2 GetMax() const;
 
 	// Get width, height, center of box
+	// Returns true if this box intersects with other	
+	
+	// Get width, height, center of box	
 	const Vector2& GetCenter() const;
 	float GetWidth() const { return mWidth; }
 	float GetHeight() const { return mHeight; }
@@ -30,4 +36,5 @@ private:
 	float mWidth;
 	float mHeight;
 };
+
 

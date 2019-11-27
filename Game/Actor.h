@@ -1,9 +1,10 @@
 #pragma once
 #include <vector>
-#include <SDL/SDL_stdinc.h>
+#include <SDL_stdinc.h>
 #include "Math.h"
 #include "SpriteComponent.h"
 #include "CollisionComponent.h"
+#include "Game.h"
 class Actor
 {
 public:
@@ -37,19 +38,21 @@ public:
 	void SetScale(float scale) { mScale = scale; }
 	float GetRotation() const { return mRotation; }
 	void SetRotation(float rotation) { mRotation = rotation; }
+	CollisionComponent* GetCollisionComp() { return mCollis; }
 	Vector2 GetForward();
 	State GetState() const { return mState; }
 	void SetState(State state) { mState = state; }
-	class Game* GetGame() { return mGame; }
+	Game* GetGame() { return mGame; }
 	bool UpKey;
 	bool DownKey;
 	bool RightKey;
 	bool LeftKey;
+	bool opening = false;
 
 	
 
 protected:
-	class Game* mGame;
+	Game* mGame;
 	// Actor's state
 	State mState;
 	// Transform

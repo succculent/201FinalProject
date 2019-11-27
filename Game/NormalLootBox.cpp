@@ -23,5 +23,6 @@ NormalLootBox::NormalLootBox(Game* game):LootBox(game)
 
 	mCollis = new CollisionComponent(this);
 	mCollis->SetSize(200, 200);
+	maxRandom = 6;
 
 }

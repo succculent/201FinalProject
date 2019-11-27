@@ -1,0 +1,6 @@
+[submodule "BTC_Miner/cpr"]
+	path = BTC_Miner/cpr
+	url = git@github.com:whoshuu/cpr.git
+[submodule "BTC_Miner/json"]
+	path = BTC_Miner/json
+	url = git@github.com:nlohmann/json.git

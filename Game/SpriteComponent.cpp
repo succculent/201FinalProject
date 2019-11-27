@@ -15,7 +15,6 @@ SpriteComponent::SpriteComponent(Actor* owner, int drawOrder)
 
 SpriteComponent::~SpriteComponent()
 {
-
 	mOwner->GetGame()->RemoveSprite(this);
 }
 
