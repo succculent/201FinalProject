@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "SDL/SDL.h"
+#include "SDL.h"
 class SpriteComponent : public Component
 {
 public:
@@ -20,7 +20,9 @@ public:
 	// Get the width/height of the texture
 	int GetTexHeight() const { return mTexHeight; }
 	int GetTexWidth() const { return mTexWidth; }
+
 protected:
+
 	// Texture to draw
 	SDL_Texture* mTexture;
 	// Draw order

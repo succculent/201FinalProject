@@ -1,14 +1,18 @@
 #pragma once
-#include "SDL/SDL.h"
+#include "SDL.h"
 #include <vector>
 #include <unordered_map>
 #include "SpriteComponent.h"
-#include "SDL/SDL_ttf.h"
+#include "SDL_ttf.h"
+#include <string>
+using namespace std;
+
 
 
 
 class Actor;
 class LootBox;
+class Player;
 // TODO
 class Game {
 	public:
@@ -25,7 +29,21 @@ class Game {
 	void UnloadData();
 	void AddSprite(SpriteComponent* sprite);
 	void RemoveSprite(SpriteComponent* sprite);
+	string BoxInProgress = "";
+	bool Box1inProgress = false;
+	bool Box2inProgress = false;
+	bool Box3inProgress = false;
+	void ItemMessage(string itemName, string desc);
+	void RemoveItemMessage();
+	void SetMessage(string s);
+	void RemoveMessage();
+	bool messageactive = false;
+	void UpdateCoinPerClick(int coin);
 
+	Player* GetPlayer()
+	{
+		return mButton;
+	}
 	SDL_Texture* GetTexture(std::string fileName);
 
 	private:
@@ -57,6 +75,14 @@ class Game {
 	SDL_Texture* PassiveUpdate;
 	SDL_Rect PassiveUpdate_rect;
 	SDL_Surface* surfaceMessage2;
+
+	SDL_Texture* GameMessage;
+	SDL_Rect GameMessage_rect;
+	SDL_Surface* surfaceMessage3;
+
+	SDL_Texture* CoinPerClick;
+	SDL_Rect CoinPerClick_rect;
+	SDL_Surface* surfaceMessage4;
 	int * w = new int();
 	int* h = new int();
 	
@@ -65,7 +91,10 @@ class Game {
 
 	std::vector<Actor*> mVector;
 	std::vector<LootBox*> mBox;
+	Player* mButton;
 	std::unordered_map<std::string, SDL_Texture*> sprites;
 	std::vector <SpriteComponent*> mSprites;
 	SDL_Texture* background;
+
+	float messagetime = 0.0f;
 };

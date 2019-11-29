@@ -7,20 +7,21 @@
 //
 
 #include "Game.h"
-#include "SDL/SDL.h"
+#include "SDL.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm>
 #include <string>
-#include <SDL/SDL_image.h>
+#include <SDL_image.h>
 #include "Actor.h"
 #include "Random.h"
 #include "NormalLootBox.h"
 #include "UltraLootBox.h"
 #include "PrestigeLootBox.h"
+#include "Player.h"
 //#include "Background.h"
-#include "SDL/SDL_mixer.h"
-#include "SDL/SDL_ttf.h"
+#include "SDL_mixer.h"
+#include "SDL_ttf.h"
 #include <sstream>
 
 
@@ -114,17 +115,31 @@ void Game::Loop()
 void Game::ProcessInput()
 {
 	SDL_Event event;
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
 
 	while (SDL_PollEvent(&event))
 	{
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+
 		if (event.type == SDL_QUIT)
 		{
 			gameRunning = false;
 		}
+
+		if (event.type == SDL_MOUSEBUTTONDOWN && mButton->GetCollisionComp()->Intersect(Vector2(x, y)));
+		{
+			mButton->clicked = true;
+		}
+		if (event.type == SDL_MOUSEBUTTONUP)
+		{
+			mButton->clickedFirst = true;
+		}
+
+
 		
 	}
 
-	const Uint8 *state = SDL_GetKeyboardState(NULL);
 
 	std::vector <Actor*> mVectorTemp = mVector;
 
@@ -138,10 +153,18 @@ void Game::ProcessInput()
 		mBox[i]->ProcessInput(state);
 	}
 
+	mButton->ProcessInput(state);
+	
+	
+
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
 		gameRunning = false;
 	}
+
+
+
+
 }
 
 void Game::UpdateGame()
@@ -185,14 +208,53 @@ void Game::UpdateGame()
 		mBox[i]->Update(deltaTime);
 	}
 
+
+	mButton->Update(deltaTime);
+	
+
 	for (int j = 0; j < dead.size(); j++)
 	{
 		RemoveActor(dead[j]);
 
 	}
 
+	stringstream strs;
+	strs << mButton->getBalance();
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
 
+
+	surfaceMessage1 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	BalanceUpdate = SDL_CreateTextureFromSurface(renderer, surfaceMessage1);
 	
+	BalanceUpdate_rect.x = 205;
+	BalanceUpdate_rect.y = 68;
+	BalanceUpdate_rect.w = *w;
+	BalanceUpdate_rect.h = *h;
+
+	strs.str(std::string());
+	strs << mButton->getCPS();
+	temp_str = "";
+	temp_str = strs.str();
+	char_type = (char*)temp_str.c_str();
+
+	surfaceMessage2 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	PassiveUpdate = SDL_CreateTextureFromSurface(renderer, surfaceMessage2);
+
+	PassiveUpdate_rect.x = 900;
+	PassiveUpdate_rect.y = 68;
+	PassiveUpdate_rect.w = *w;
+	PassiveUpdate_rect.h = *h;
+
+	messagetime += deltaTime;
+	if (messagetime > 3.0f && messageactive)
+	{
+		RemoveItemMessage();
+		messageactive = false;
+		messagetime = 0.0f;
+	}
 }
 
 void Game::GenerateOutput()
@@ -207,6 +269,8 @@ void Game::GenerateOutput()
 	}
 	SDL_RenderCopy(renderer, BalanceUpdate, NULL, &BalanceUpdate_rect);
 	SDL_RenderCopy(renderer, PassiveUpdate, NULL, &PassiveUpdate_rect);
+	SDL_RenderCopy(renderer, GameMessage, NULL, &GameMessage_rect);
+	SDL_RenderCopy(renderer, CoinPerClick, NULL, &CoinPerClick_rect);
 
 
 	SDL_RenderPresent(renderer);
@@ -244,17 +308,17 @@ void Game::LoadData()
 
 	// loot box sprites: https://bayat.itch.io/platform-game-assets?download
 	NormalLootBox* Box1 = new NormalLootBox(this);
-	Box1->SetPosition(Vector2(175, 250));
+	Box1->SetPosition(Vector2(175, 300));
 	//AddActor(Box1);
 	mBox.push_back(Box1);
 
 	UltraLootBox* Box2 = new UltraLootBox(this);
-	Box2->SetPosition(Vector2(512, 250));
+	Box2->SetPosition(Vector2(512, 300));
 	AddActor(Box2);
 	mBox.push_back(Box2);
 
 	PrestigeLootBox* Box3 = new PrestigeLootBox(this);
-	Box3->SetPosition(Vector2(849, 250));
+	Box3->SetPosition(Vector2(849, 300));
 	AddActor(Box3);
 	mBox.push_back(Box3);
 	
@@ -262,21 +326,21 @@ void Game::LoadData()
 	SpriteComponent * Box1TextSprite = new SpriteComponent(Box1Text, 3);
 	Box1TextSprite->SetTexture(GetTexture("Assets/normalboxtext.png"));
 	Box1Text->SetSprite(Box1TextSprite);
-	Box1Text->SetPosition(Vector2(175, 430));
+	Box1Text->SetPosition(Vector2(175, 500));
 	AddActor(Box1Text);
 
 	Actor* Box2Text = new Actor(this);
 	SpriteComponent * Box2TextSprite = new SpriteComponent(Box2Text, 3);
 	Box2TextSprite->SetTexture(GetTexture("Assets/ultraboxtext.png"));
 	Box2Text->SetSprite(Box2TextSprite);
-	Box2Text->SetPosition(Vector2(512, 430));
+	Box2Text->SetPosition(Vector2(512, 500));
 	AddActor(Box2Text);
 
 	Actor* Box3Text = new Actor(this);
 	SpriteComponent * Box3TextSprite = new SpriteComponent(Box3Text, 3);
 	Box3TextSprite->SetTexture(GetTexture("Assets/prestigeboxtext.png"));
 	Box3Text->SetSprite(Box3TextSprite);
-	Box3Text->SetPosition(Vector2(849, 430));
+	Box3Text->SetPosition(Vector2(849, 500));
 	AddActor(Box3Text);
 
 	Actor* Balance = new Actor(this);
@@ -296,12 +360,8 @@ void Game::LoadData()
 	AddActor(Passive);
 
 
-	Actor* Button = new Actor(this);
-	SpriteComponent * ButtonSprite = new SpriteComponent(Button, 3);
-	ButtonSprite->SetTexture(GetTexture("Assets/workbutton.png"));
-	Button->SetSprite(ButtonSprite);
-	Button->SetPosition(Vector2(512, 550));
-	AddActor(Button);
+	mButton = new Player(this);
+	AddActor(mButton);
 
 	stringstream strs;
 	strs << balanceNum;
@@ -378,4 +438,78 @@ void Game::AddSprite(SpriteComponent* sprite)
 void Game::RemoveSprite(SpriteComponent* sprite)
 {
 	mSprites.erase(find(mSprites.begin(), mSprites.end(), sprite));
+}
+
+void Game::ItemMessage(string itemName, string desc)
+{
+	string temp = "You won a " + itemName + "! " + desc;
+	stringstream strs;
+	strs << temp;
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
+
+	surfaceMessage3 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	GameMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage3);
+
+	GameMessage_rect.y = 700;
+	GameMessage_rect.w = *w;
+	GameMessage_rect.h = *h;
+	GameMessage_rect.x = (1024 - *w)/2;
+
+}
+
+void Game::RemoveItemMessage()
+{
+	stringstream strs;
+	strs << "";
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
+
+	surfaceMessage3 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	GameMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage3);
+	
+	GameMessage_rect.x = 0;
+	GameMessage_rect.y = 0;
+	GameMessage_rect.w = *w;
+	GameMessage_rect.h = *h;
+	
+}
+
+void Game::SetMessage(string s)
+{
+	stringstream strs;
+	strs << s;
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
+
+	surfaceMessage3 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	GameMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage3);
+
+	GameMessage_rect.y = 700;
+	GameMessage_rect.w = *w;
+	GameMessage_rect.h = *h;
+	GameMessage_rect.x = (1024 - *w) / 2;
+
+	messageactive = true;
+}
+
+void Game::UpdateCoinPerClick(int coin)
+{
+	string s = to_string(coin) + " coins per click";
+	stringstream strs;
+	strs << s;
+	string temp_str = strs.str();
+	char* char_type = (char*)temp_str.c_str();
+
+	surfaceMessage4 = TTF_RenderText_Solid(OpenFont, char_type, Black);
+	TTF_SizeText(OpenFont, char_type, w, h);
+	CoinPerClick = SDL_CreateTextureFromSurface(renderer, surfaceMessage4);
+
+	CoinPerClick_rect.y = 650;
+	CoinPerClick_rect.w = *w;
+	CoinPerClick_rect.h = *h;
+	CoinPerClick_rect.x = (1024 - *w) / 2;
 }
