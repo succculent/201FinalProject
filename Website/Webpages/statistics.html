@@ -20,19 +20,43 @@
 		}
 	</style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 	function refreshPage() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", "Statistics", false);
 		xhttp.send();
+		var obj = JSON.parse(xhttp.responseText);
+		var computeList = obj.compute_time;
+		var addrList = obj.address;
+		var receivedList = obj.received_time;
+		var resultList = obj.result;
 
-		document.getElementById("stats").innerHTML = xhttp.responseText; 
+		$("#results").append('h1>Welcome, Administrator</h1>' + '<h2>Computation Statistics:</h2>' );
+
+		var d = new Date(); 
+		$("#results").append('Last Updated at:' + d);
+
+
+		$("#results").append('<table><tr><th>Time Computation Received </th>' + '<th>Time Taken</th>' + '<th>IP Address</th>' 
+			+ '<th>Returned Result</th></tr>');
+
+		//loop through lists, each list is of the same length
+		for(i=0; i<computeList.length; i++) {
+
+			$("#results").append('<tr><td>' + receivedList[i] + '</td>'
+				+ '<td>' + computeList[i] + '</td>'
+				+ '<td>' + addrList[i] + '</td>'
+				+ '<td>' + resultList[i] + '</td>'
+				+ '</tr>');
+		}
+
+		$("#results").append('</table>');
 	}
 
 	function logOut() {
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "logout", false);
-		xhttp.send();
+		sessionStorage.removeItem('user'); 
+		window.location.href = "HomePage.html"; 
 	}
 </script>
 </head>
@@ -40,47 +64,9 @@
 <body style = "background-color:#7986cb;">
 <img src="" alt="Insert Logo Here" height="42" width="42">
 
-<div id = "stats"> 
-	<h1>Welcome, Administrator</h1>
-	<h2>Computation Statistics:</h2>
-	Last Updated at: 2019/11/09 14:05:58.429
-	<table>
-		<tr>
-			<th>Time Request Sent</th>
-			<th>Time Computation Received</th>
-			<th>Time Taken</th>
-			<th>IP Address</th>
-			<th>Returned Result</th>
-		</tr>
-		<tr>
-			<td>Example Time Sent</td>
-			<td>Example Time Received</td>
-			<td>Example Time Taken</td>
-			<td>Example IP Address</td>
-			<td>Example Returned Result</td>
-		</tr>
-		<tr>
-			<td>Example Time Sent</td>
-			<td>Example Time Received</td>
-			<td>Example Time Taken</td>
-			<td>Example IP Address</td>
-			<td>Example Returned Result</td>
-		</tr>
-		<tr>
-			<td>Example Time Sent</td>
-			<td>Example Time Received</td>
-			<td>Example Time Taken</td>
-			<td>Example IP Address</td>
-			<td>Example Returned Result</td>
-		</tr>
-		<tr>
-			<td>Example Time Sent</td>
-			<td>Example Time Received</td>
-			<td>Example Time Taken</td>
-			<td>Example IP Address</td>
-			<td>Example Returned Result</td>
-		</tr>
-	</table>
+<div id = "results">
+
+
 </div>
 	<div id = "buttons">
 		<button id = "updatebutton" style = "font-size: 10pt" onclick="refreshPage()"> Refresh </button>
