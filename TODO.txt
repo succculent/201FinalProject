@@ -1,0 +1,8 @@
+Get Server up and running
+Copy paste the ip address of the server everywhere
+Set up UDP communication
+Figure out how to make download button work
+
+bugfixes
+
+put together project and practice demo
