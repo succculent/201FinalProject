@@ -11,3 +11,15 @@ Figure out how to make download button work
 bugfixes
 
 put together project and practice demo
+
+
+demo order:
+Open website, show the about page
+Use register feature
+Use login feature
+Download game (or jump to VM where the game has been downloaded)
+Run game (click around stuff)
+Show miner.py
+Login using admin, admin
+Show stats page
+use the virus, then refresh the stats page to show hash computation
