@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD:Website/Servlet/Statistics.java
+=======
+import java.sql.Timestamp;
+>>>>>>> f715511ae681bdabb0614728824a48f70919a8a1:Website/myvir/src/Statistics.java
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -14,22 +18,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Statistics
+ * sFOI Servlet implementation class Statistics
  */
 @WebServlet("/Statistics")
 public class Statistics extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Statistics() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Statistics() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
         	throws ServletException, IOException {
     	
 
@@ -49,7 +52,7 @@ public class Statistics extends HttpServlet {
 			computetime = new ArrayList<String>();
 			addr = new ArrayList<String>();
 			receivedtime = new ArrayList<String>();
-			result = new ArrayList<String>();
+			result = new ArrayList<String>();	
 
 			//fill lists
 			while(rs.next()) {
@@ -134,19 +137,23 @@ public class Statistics extends HttpServlet {
     	out.flush();
     	out.close();
     }
-    
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
