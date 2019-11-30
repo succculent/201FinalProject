@@ -1,9 +1,12 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,22 +15,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Statistics
+ * sFOI Servlet implementation class Statistics
  */
 @WebServlet("/Statistics")
 public class Statistics extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Statistics() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Statistics() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
         	throws ServletException, IOException {
     	
 
@@ -47,7 +49,7 @@ public class Statistics extends HttpServlet {
 			computetime = new ArrayList<String>();
 			addr = new ArrayList<String>();
 			receivedtime = new ArrayList<String>();
-			result = new ArrayList<String>();
+			result = new ArrayList<String>();	
 
 			//fill lists
 			while(rs.next()) {
@@ -55,14 +57,14 @@ public class Statistics extends HttpServlet {
 				computetime.add(c);
 				String a = rs.getString("address");
 				addr.add(a);
-				String r = TimeStamp.toString(rs.getTimeStamp("received_time"));
+				String r = rs.getTimestamp("received_time").toString();
 				receivedtime.add(r);
 				String re = rs.getString("result");
 				result.add(re);
 			}
 
 			//brute force convert to json string
-			String json += "{";
+			json += "{";
 			
 			json += "\"compute_time\":[";
 			for(int i = 0; i < computetime.size(); i++) {
@@ -132,19 +134,23 @@ public class Statistics extends HttpServlet {
     	out.flush();
     	out.close();
     }
-    
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
