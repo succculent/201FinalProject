@@ -34,7 +34,7 @@ public class ValidateLogin extends HttpServlet {
 		ResultSet rs = null;
 		Boolean admin = false;
 		try {
-			conn = DriverManager.getConnection("//insert jdbc here");
+			conn = DriverManager.getConnection("jdbc:mysql://google/Project?cloudSqlInstance=myvirus:us-west1:myvir-database&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false&user=root&password=root");
 			ps = conn.prepareStatement("SELECT user_id, username FROM users WHERE username=?");
 			ps.setString(1, username);
 			rs = ps.executeQuery();

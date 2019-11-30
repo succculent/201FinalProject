@@ -12,7 +12,8 @@ function validateUser() {
 	if(xhttp.responseText.trim().length > 0) {
 		if (xhttp.responseText.trim().localeCompare("ADMIN_USER") == 0) 
 		{
-			location.href = "statistics.html"; 
+			window.location.href = 'statistics.html'; 
+			return false;
 		}
 		
 		else {

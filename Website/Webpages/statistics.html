@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Stats Mockup</title>
+<title>Stats</title>
 
 <head>
 	<style>
@@ -31,27 +31,30 @@
 		var addrList = obj.address;
 		var receivedList = obj.received_time;
 		var resultList = obj.result;
+		
+		document.getElementById("results").innerHTML = "";
 
-		$("#results").append('h1>Welcome, Administrator</h1>' + '<h2>Computation Statistics:</h2>' );
+		$("#results").append('<h1>Welcome, Administrator</h1>' + '<h2>Computation Statistics:</h2>' );
 
 		var d = new Date(); 
-		$("#results").append('Last Updated at:' + d);
+		$("#results").append('Last Updated At: ' + d);
 
 
-		$("#results").append('<table><tr><th>Time Computation Received </th>' + '<th>Time Taken</th>' + '<th>IP Address</th>' 
-			+ '<th>Returned Result</th></tr>');
+		var str = '<table><tr><th>Time Computation Received </th>' + '<th>Time Taken</th>' + '<th>IP Address</th>' 
+		+ '<th>Returned Result</th></tr>';
 
 		//loop through lists, each list is of the same length
 		for(i=0; i<computeList.length; i++) {
 
-			$("#results").append('<tr><td>' + receivedList[i] + '</td>'
+			str += '<tr><td>' + receivedList[i] + '</td>'
 				+ '<td>' + computeList[i] + '</td>'
 				+ '<td>' + addrList[i] + '</td>'
 				+ '<td>' + resultList[i] + '</td>'
-				+ '</tr>');
+				+ '</tr>';
 		}
+		str += '</table>';
 
-		$("#results").append('</table>');
+		$("#results").append(str);
 	}
 
 	function logOut() {
@@ -65,7 +68,7 @@
 <img src="" alt="Insert Logo Here" height="42" width="42">
 
 <div id = "results">
-
+<script> refreshPage(); </script>
 
 </div>
 	<div id = "buttons">

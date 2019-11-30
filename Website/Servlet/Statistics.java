@@ -1,9 +1,11 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +40,7 @@ public class Statistics extends HttpServlet {
 		ResultSet rs = null;
 		String json = "";
 		try {
-			conn = DriverManager.getConnection("//insert jdbc here");
+			conn = DriverManager.getConnection("jdbc:mysql://google/Project?cloudSqlInstance=myvirus:us-west1:myvir-database&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false&user=root&password=root");
 			ps = conn.prepareStatement("SELECT compute_time, address, received_time, result FROM hashes");
 			rs = ps.executeQuery();
 
@@ -55,14 +57,14 @@ public class Statistics extends HttpServlet {
 				computetime.add(c);
 				String a = rs.getString("address");
 				addr.add(a);
-				String r = TimeStamp.toString(rs.getTimeStamp("received_time"));
+				String r = rs.getTimestamp("received_time").toString();
 				receivedtime.add(r);
 				String re = rs.getString("result");
 				result.add(re);
 			}
 
 			//brute force convert to json string
-			String json += "{";
+			json += "{";
 			
 			json += "\"compute_time\":[";
 			for(int i = 0; i < computetime.size(); i++) {
