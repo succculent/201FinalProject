@@ -26,3 +26,5 @@ CREATE TABLE hashes(
 	received_time timestamp not null,
 	result varchar(1000) not null
 );
+
+jdbc:mysql://google/Project?cloudSqlInstance=myvirus:us-west1:myvir-database&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false&user=root&password=root
