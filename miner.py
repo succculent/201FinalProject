@@ -4,14 +4,18 @@ import json
 import hashlib
 import merkletools
 import random
-#import time
+import time
+import socket
 
 NONCE_MAX = 4294967296
 API_URL = "https://blockchain.info/latestblock"
 TX_KEY = "txIndexes"
 PREVHASH_KEY = "hash"
-HASH_ATTEMPTS = 3000
+HASH_ATTEMPTS = 15000
 THRESHOLD = 3
+
+IP = '127.0.0.1'
+PORT = 42069
 
 with urllib.request.urlopen(API_URL) as url:
     data = json.loads(url.read().decode())
@@ -34,7 +38,8 @@ with urllib.request.urlopen(API_URL) as url:
     #print("Time: " + str(data["time"]))
     #print("Transactions: ")
     #print(transactions)    
-    #start_time = time.time()
+    
+    start_time = time.time()
 
     #set up threshold
     comp = (THRESHOLD) * '0'
@@ -53,7 +58,11 @@ with urllib.request.urlopen(API_URL) as url:
         if str(h)[:THRESHOLD]==comp:
             hashdict[nonce] = h
 
-    #DEBUG
-    #for h in hashdict:
-    #    print (str(h) + ": " + str(hashdict[h]))
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    time_elapsed = time.time() - start_time;
+    for h in hashdict:
+        message = hashdict[h] + " " + str(time_elapsed*1000);
+        s.sendto(message.encode('utf-8'), (IP, PORT))
+    #DEBUG    
+        #print (str(h) + ": " + str(hashdict[h]))
     #print("--- %s seconds ---" % (time.time() - start_time))
