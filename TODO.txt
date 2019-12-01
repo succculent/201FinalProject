@@ -1,6 +1,7 @@
-CHANGE every instance of HomePage.html to just myvir.us
-Get Server up and running
-Copy paste the ip address of the server everywhere
+Get udpServer up and running
+set up udp package sending in miner python script
+Copy paste the ip address of the server into python script 
+recompile virus with updated miner
 
 Set up UDP communication
 -> format should be:
