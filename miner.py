@@ -61,7 +61,7 @@ with urllib.request.urlopen(API_URL) as url:
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     time_elapsed = time.time() - start_time;
     for h in hashdict:
-        message = hashdict[h] + " " + str(time_elapsed*1000);
+        message = str(hashdict[h]) + " " + str(int(time_elapsed*1000));
         s.sendto(message.encode('utf-8'), (IP, PORT))
     #DEBUG    
         #print (str(h) + ": " + str(hashdict[h]))
