@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login Page </title>
+<title>myvir.us | Login Page </title>
+<link rel="stylesheet" href="login.css">
+<link rel="icon" href="favicon.ico">
+
 <script type="application/javascript">
+
 function validateUser() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", "ValidateLogin?" + 
@@ -31,23 +35,27 @@ function validateUser() {
 </script>
 </head>
 
-<body style = "background-color:#7986cb;">
-<img src="" alt="Insert Logo Here" height="42" width="42">
-
+<body>
+	<a href="index.html" id="logo-pos">
+		<img id="logo" src="logo_v2.png" alt="Insert Logo Here" height="42" width="42">
+	</a>
 <div id = "formcontent">
-<h2>Login</h2>
+<h2>LOGIN</h2>
 
 <form name = "loginform" method="GET" onsubmit = "return validateUser();" action="download.html" >
   <div id="formerror"></div>
-  Username:<br>
+  <div id="formtxt">Username:<br></div>
   <input type="text" name="username" required>
   <br>
-  Password:<br>
+  <br>
+  <div id="formtxt">Password:<br></div>
   <input type="password" name="password" required>
   <br><br>
-  <input type="submit" value="Submit">
+  <br>
+  <div id="centerbutton">
+  <input id="submit"type="submit" value="Submit">
+</div>
 </form> 
-
 </div>
 
 

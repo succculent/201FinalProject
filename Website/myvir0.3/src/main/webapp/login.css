@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 #links{
-    position:relative;
     font-family: 'Lato';
-    top:60px;
+    position:relative;
+    top:40px;
     left:75%;
-    width:300px;
+  
 }
 #shadow
 {
@@ -13,7 +13,7 @@
     background-color: black;
     opacity: 20%;
     width:102vw;
-    height:102vh;
+    height:104vh;
     left:-10px;
     top:0px;
     z-index:-1;
@@ -21,7 +21,8 @@
 }
 #rainbow-crop
 {
-    width:150%;
+
+    width:50%;
     height:auto;
     object-fit: contain;
 }
@@ -29,8 +30,9 @@ body
 {
     background-image: linear-gradient(#0a2f9e,#a458ff);    
     background-size: cover;
-    width:100vw;
-    height: 100vh;
+    width:100%;
+    height:100vh;
+
 
 }
 #rainbow
@@ -38,7 +40,7 @@ body
     position:relative; 
     background-size: cover;
     align-content: center;
-    width:200px;
+    width:60%;
     height:56%;
     top:-300px;
     left:50%;
@@ -108,6 +110,68 @@ h6{
     color:white;
     z-index:1;
 }
+h2
+{
+    weight:bolder;
+}
+
+input[type=submit]
+{
+    text-algin:center;
+    width: 95%;
+    height:40px;
+    cursor: pointer;
+    color: white;
+    background-color:black;
+    font-family: 'Lato';
+    font-weight: bolder;
+    border: 0px;
+    transition:0.3;
+
+}
+input[type=submit]:hover
+{
+    opacity: 0.6;
+}
+#centerbutton
+{
+    width:50%;
+    margin:auto;
+}
+input
+{
+    width:95%;
+    height: 15px;
+    padding:5px;
+}
+#formtxt
+{
+    font-family:'Open Sans';
+   padding-top:15px;
+   padding-bottom:5px;
+}
+#formcontent
+{
+    margin-top:5%;
+    margin-left: auto;
+    margin-right:auto;
+    display:block;
+    width: 50%;
+    font-family: 'Lato';
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+    box-shadow:  1px 1px 1px 3px black;
+
+    width:300px;
+    height:;
+    color:white;
+    padding:20px;
+}
+#logo-pos
+{
+    position:relative;
+    left:5%;
+    width:200px;
+}
 #logo
 {
     position:relative;
@@ -116,13 +180,8 @@ h6{
     -ms-animation: fadein 2s; /* Internet Explorer */
     -o-animation: fadein 2s; /* Opera < 12.1 */
     animation: fadein 2s;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    height:-300px;
-    z-index:1;
-
+    width: 200px;
+    height:auto;
 }
 a{
     color:white;
@@ -150,7 +209,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    widows: 100vw;
+    width:300px;
   }
 
 @keyframes fadein {
