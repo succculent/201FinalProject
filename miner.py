@@ -14,7 +14,7 @@ PREVHASH_KEY = "hash"
 HASH_ATTEMPTS = 15000
 THRESHOLD = 3
 
-IP = '34.94.185.60/'
+IP = '34.94.185.60'
 PORT = 42069
 
 with urllib.request.urlopen(API_URL) as url:
