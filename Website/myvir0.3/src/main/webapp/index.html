@@ -2,46 +2,40 @@
 <html>
 <head>
 <title> Index </title>
+<link rel="stylesheet" href="index.css">
+<link rel="icon" href="favicon.ico">
+
 <style>
-  #links{
-      text-align: center;
-        float: center;
-    }
-    h1{
-  text-align: center;
-    float: center;
-    }
-    h6{
-  text-align: center;
-    float: center;
-  }
+  
 
 </style>
 
 </head>
 
-<body style = "background-color:#7986cb;">
-<img src="" alt="Insert Logo Here" height="42" width="42">
-<h1 style = "font-size: 50pt;"> Welcome!</h1>
-
- <h6 style = "font-size: 5pt;">
-    Disclaimer: This is a virus.
-  </h6>
-
-
-<div id = "links">
-  <a href = "login.html" > Already Registered? Login </a>   <br>
-   <a href = "register.html" >New Here? Register </a> <br>
+<body>
   
-  
-  <a href = "gameinfo.html" >About the Game </a>   <br>
-</div>
 
+  <ul id = "links">
+  <li div="button"><a href = "login.html" > Login </a></li>  
+  <li div="button"><a href = "register.html" >Register </a></li>
+  <li div="button"><a href = "gameinfo.html" >About the Game </a></li>
+</ul>
+<img id="logo" src="logo_v2.png">
+<div id="welcome" style = "font-size: 50pt;  text-shadow: 1px 1px 2px black;
+"> Welcome!</div>
+  <div id= "disclaimer">
+    <h6 >
+      Disclaimer: This is a virus.
+    </h6>
+    <div id="buttonpos">
+    <button onclick="location.href='login.html'" id="btn">Login to Download</button>
+    </div>
 
-  
+  </div>
+
+  <div id="rainbow"><img id="rainbow-crop" src="rainbow.png"></div>
+  <div id="shadow">
+    </div>
 </body>
-
-
-
 
 </html>
