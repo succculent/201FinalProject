@@ -1,18 +1,22 @@
-Get udpServer up and running
-set up udp package sending in miner python script
-Copy paste the ip address of the server into python script 
-recompile virus with updated miner
+Demo:
+Website - click around, register, normal login, download page
+Jean
 
-Set up UDP communication
--> format should be:
-<64 char result> <compute time in ms>
-12e90b8e74f20fc0a7274cff9fcbae14592db12292757f1ea0d7503d30799fd2 26
+Game - show how it's played
+Lauren
 
-Figure out how to make download button work
+Miner script
+Nick / Ada
 
-bugfixes
+Virus - show stuff
+Harry
 
-put together project and practice demo
+Back to Website - Statistics page with admin login
+Jason
+
+get download button working - link to github
+
+practice demo
 
 
 demo order:
