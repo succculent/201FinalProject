@@ -1,9 +1,74 @@
 <!DOCTYPE html>
 <html>
-<title>Stats</title>
+<title>myvir.us | Stats</title>
 
 <head>
+		<link rel="icon" href="favicon.ico">
+
 	<style>
+		@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+		@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+		#buttons
+		{
+			width:95vw;
+		}
+		#subsection
+		{
+			position:absolute;
+			left:0px;
+			padding-top:20px;
+			background-color:white;
+			width: 99.1vw;
+			height:99vh;
+		}
+		#results
+		{
+			position:relative;
+			right:5%;
+			left:5%;
+			width:93vw;
+		}
+		th {
+  			padding-top: 12px;
+  			padding-bottom: 12px;
+  			text-align: left;
+  			background-color: #a458ff;
+			  color: white;
+			  font-family:'Lato';
+		}
+		td
+		{
+			color: black;
+			font-family:'Open Sans';
+		}
+		h1
+		{
+			font-family: 'Lato';
+			font-weight: bolder;
+			color:white;
+			font-size:50px;
+			position:relative;
+			left:5%;
+			width:600px;
+		}
+		#logo
+		{
+			position:relative;
+    		-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    		-moz-animation: fadein 2s; /* Firefox < 16 */
+    		-ms-animation: fadein 2s; /* Internet Explorer */
+    		-o-animation: fadein 2s; /* Opera < 12.1 */
+    		animation: fadein 2s;
+    		width: 10%;
+    		height:auto;
+		}
+		body
+		{
+			background-image: linear-gradient(#0a2f9e,#a458ff);    
+    		background-size: cover;
+    		width:98vw;
+    		height:98vh;
+		}
 		table, tr, td, th {
 			border: 1px solid black;
 		}
@@ -12,11 +77,20 @@
 			padding: 5px;
 		}
 		button {
+			position:relative;
+			font-family:'Lato';
+			font-weight: 550;
+			background-color:black;
+			color:white;
+			border:none;
+			text-align:center;
 			margin: 20px;
-			width: 10%;
-			height: 8%;
-			font-size: 18px;
-			border-radius: 10px;
+			width: 10em;
+			height: 3em;
+			cursor: pointer;
+		}
+		button:hover{
+			opacity: 0.6
 		}
 	</style>
 
@@ -65,9 +139,12 @@
 </head>
 
 <body style = "background-color:#7986cb;">
-<img src="" alt="Insert Logo Here" height="42" width="42">
-
+<a href="index.html">
+		<img id="logo" src="logo_v2.png" alt="Insert Logo Here">
+</a>
+<div id="subsection">
 <div id = "results">
+	
 <script> refreshPage(); </script>
 
 </div>
@@ -75,5 +152,5 @@
 		<button id = "updatebutton" style = "font-size: 10pt" onclick="refreshPage()"> Refresh </button>
 		<button id = "logout" style = "font-size: 10pt" onclick = "logOut()" > Logout </button>
 	</div>
-
+</div>
 </body>
