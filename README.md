@@ -1,3 +1,6 @@
+# [myvir.us](http://www.myvir.us)
+
+
 This is the CSCI 201 Final Project for -  
 
 Jason Yik, jyik@usc.edu
@@ -12,6 +15,13 @@ Kai-Chin Hsu, kaichinh@usc.edu
 
 Lauren Shen, laurenys@usc.edu
 
+
+What Works:
+Everything
+
+
+What Doesn't Work:
+Nothing
 
 
 
@@ -30,3 +40,5 @@ real-time statistics of their guests’ mined hashes. An authenticated user will
 promote a guest to an authenticated user, so that the promoted user will be able to invite their own
 guests and make them mine for him. The server will have threads running for each guest and authenticated
 user in order for cross communication to happen between them.
+
+
