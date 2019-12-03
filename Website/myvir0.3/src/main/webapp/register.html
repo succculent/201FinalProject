@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register Page </title>
+<title>myvir.us | Register Page </title>
+<link rel="stylesheet" href="login.css">
+<link rel="icon" href="favicon.ico">
 <script type="application/javascript">
 function validateInfo() {
 	var xhttp = new XMLHttpRequest();
@@ -23,8 +25,9 @@ function validateInfo() {
 </head>
 
 <body style = "background-color:#7986cb;">
-<img src="" alt="Insert Logo Here" height="42" width="42">
-
+<a href="index.html" id="logo-pos">
+	<img id="logo" src="logo_v2.png" alt="Insert Logo Here" height="42" width="42">
+</a>
 <div id = "formcontent">
 <h2>Register</h2>
 
@@ -33,12 +36,17 @@ function validateInfo() {
   Username:<br>
   <input type="text" name="username" required>
   <br>
+  <br>
   Password:<br>
   <input type="password" name="password1" required> <br>
+  <br>
   Confirm Password:<br>
   <input type="password" name="password2" required> <br>
   <br>
+  <br>
+  <div id="centerbutton">
   <input type="submit" value="Submit">
+</div>
 </form> 
 
 </div>

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Download Page </title>
+		<link rel="stylesheet" href="login.css">
+		<link rel="icon" href="favicon.ico">
+		
+<title>myvir.us | Download Page </title>
 <script>
 	function logOut() {
 		sessionStorage.removeItem('user'); 
@@ -11,13 +14,22 @@
 </head>
 
 <body style = "background-color:#7986cb;">
-<img src="" alt="Insert Logo Here" height="42" width="42">
+		<a href="index.html">
+				<img id="logo-pos2" src="logo_v2.png" alt="Insert Logo Here" height="42" width="42">
+			</a>
 
 <br> <br> 
-<a href= "" > Download the Game</a>
+
+<div id="buttonpos">
+		<button onclick="location.href=''" id="btn">Download the Game</button>
+</div>
+
 <br>
+<div id="center-button">
 <button id = "logout" style = "font-size: 10pt" onclick = "logOut()" > Logout </button>
-  
+</div>
+<div id="rainbow"><img id="rainbow-crop" src="rainbow.png"></div>
+
 </body>
 
 

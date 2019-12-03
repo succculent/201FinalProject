@@ -1,57 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Game Info Page </title>
+  	<link rel="stylesheet" href="gameinfo.css">
+		<link rel="icon" href="favicon.ico">
+<title> myvir.us | Game Info </title>
 <style>
-h1 {
-text-align: center;
-float: center;
-}
-h2 {
-text-align: center;
-float: center;
-}
+
+
 h3{
   font-style: italic;
 }
 </style>
 </head>
 
-<body style = "background-color:#7986cb;">
-<img src=" " alt="Insert Logo Here" height="42" width="42">
+<body>
+    <a href="index.html">
+				<img id="logo" src="logo_v2.png" alt="Insert Logo Here">
+			</a>
+
 
 <h1> About the Game </h1>
 <h2> 
 My Virtual Item Requisition Upgrade Simulator is an idle clicking game for your desktop featuring the freshest and dankest memes.
 </h2>
 
+<br>
+<br>
+<div id="subsection">
+  <div id="subtitlebox"><div id="subtitle"> How to play the game </div></div>
 
+<div id="subsection2">Click the work button to gain coins! <br>
+ <br> You can open boxes to find items that will boost the power of your clicks or give you passive income. 
+  <br><br>There are over 20 items with different powers! Collect them all! 
+  </div>
 
-<h3> How to play the game </h3>
-<p>
-Click the work button to gain coins! You can open boxes to find items that will boost the power of your clicks or give you passive income. There are over 20 items with different powers! Collect them all! 
-
-<br> <br>
-
+<div id="subtitle2">
 There are three tiers of boxes! The more expensive the box, the more cool prizes you can win! 
-
+</div>
 <br> <br>
+<div id=boxes>
+<div id="box1"> 
+  <img id="boximg" src="NormalChest1.png"><br>
+<b id="itemtitle">Normal Box (Cost: 50 coins): </b><br> Normal boxes have small prizes to help you start out your Item Requisition Upgrade journey!  
+</div>
+<div id="box2">
+  <img id="boximg" src="UltraChest1.png"><br>
+<b id="itemtitle"> Ultra Boxes (Cost: 500 coins): </b><br> Ultra boxes contain upgraded prizes to propel you to the next level of of Item Requisition! 
+</div>
 
-<b>Normal Box (Cost: 50 coins): </b> Normal boxes have small prizes to help you start out your Item Requisition Upgrade journey!  
+<div id="box3">
+<img id="boximg" src="PrestigeChest1.png"><br>
+<b id="itemtitle"> Prestige Boxes (Cost: 500 coins): </b><br> Prestige Boxes are the best boxes you can find all game and gives coolest items, most coins, and biggest buffs! 
+</div>
 
-<br> <br>
-
-<b> Ultra Boxes (Cost: 500 coins): </b> Ultra boxes contain upgraded prizes to propel you to the next level of of Item Requisition! 
-<br> <br>
-
-<b> Prestige Boxes (Cost: 500 coins): </b> Prestige Boxes are the best boxes you can find all games giving you some of the coolest items, most coins, and biggest buffs to the game! 
-
-<br> <br>
-
+</div>
+<div id="subtitle3">
 Leave your game on overnight to build up the maximum amount of coins and fulfill your loot box opening urges! 
-
-<br> <br>
-
+</div>
+<div style="position:relative; top:-400px;" id="subtitlebox"> <div id="subtitle"> In-Game Stat Descriptions</div>
+<div id="subsection2">
 <b> Coin Balance: </b> This is your current balance! You need to have enough coins in order to purchase the boxes!
 
 <br> <br>
@@ -61,12 +68,15 @@ Leave your game on overnight to build up the maximum amount of coins and fulfill
 <br> <br>
 
 <b> Coins Per Click: </b> This is the number of coins you gain per click! You start out the lowest of the lows and earn a measly wage of 1 coin per work.
+</div>
+</div>
 
-<br>
-</p>
-
-<br> <br>
-To download the game, <a href = "login.html"> Login. </a>
+<div id="colorchange">
+<div style="position:relative;top:-300px;font-size:50px;"id="subtitle2">Play the game now!</div> 
+<div id="buttonpos">
+    <button onclick="location.href='login.html'" id="btn">Login to Download</button>
+</div>
+</div>
 
 
 
